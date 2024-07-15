@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+}
+
+enum ViolationType {
+  MINOR
+  MODERATE
+  HEAVY
+}
+
+model User {
+  id          String  @id @default(uuid())
+  type        Role    @default(STAFF)
+  username    String  @unique
+  displayName String?
+  avatar      String?
+
+  password Password?
+
+  RewardRecord    RewardRecord[]
+  ViolationRecord ViolationRecord[]
+}
+
+model Password {
+  id       String @id @unique
+  password String
+
+  user User @relation(fields: [id], references: [id])
+}
+
+model Student {
+  id             Int    @id @default(autoincrement())
+  fullName       String @db.VarChar(50)
+  identityNumber String @unique @db.VarChar(50)
+  totalPoints    Int    @default(0) @db.SmallInt
+
+  RewardRecord    RewardRecord[]
+  ViolationRecord ViolationRecord[]
+
+  @@index([fullName])
+}
+
+model RewardRecord {
+  id          Int      @id @default(autoincrement())
+  proof       String?  @db.Text
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+
+  reward   Reward @relation(fields: [rewardId], references: [id])
+  rewardId Int
+
+  reportedBy User   @relation(fields: [reporterId], references: [id])
+  reporterId String
+
+  @@index([reporterId])
+  @@index([studentId])
+  @@index([rewardId])
+}
+
+model ViolationRecord {
+  id          Int      @id @default(autoincrement())
+  proof       String?  @db.VarChar(255)
+  description String?  @db.Text
+  witness     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+
+  violation   Violation @relation(fields: [violationId], references: [id])
+  violationId Int
+
+  reportedBy User   @relation(fields: [reporterId], references: [id])
+  reporterId String
+
+  @@index([reporterId])
+  @@index([studentId])
+  @@index([violationId])
+}
+
+model Violation {
+  id     Int           @id @default(autoincrement())
+  name   String        @db.VarChar(255)
+  type   ViolationType
+  points Int           @db.SmallInt
+
+  ViolationRecord ViolationRecord[]
+
+  @@index([name])
+}
+
+model Reward {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(255)
+  points Int    @db.SmallInt
+
+  RewardRecord RewardRecord[]
+
+  @@index([name])
+}
