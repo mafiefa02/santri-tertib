@@ -1,4 +1,3 @@
-import { nextui } from '@nextui-org/react';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -9,22 +8,6 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {},
-  darkMode: 'class',
-  plugins: [
-    nextui({
-      layout: {
-        radius: {
-          small: '6px',
-          medium: '8px',
-          large: '10px',
-        },
-        borderWidth: {
-          small: '1px',
-          medium: '2px',
-          large: '3px',
-        },
-      },
-    }),
-  ],
+  plugins: [],
 };
 export default config;
