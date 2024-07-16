@@ -1,3 +1,4 @@
+import { Button } from '@mantine/core';
 import Link from 'next/link';
 
 import { auth } from '@/config/auth';
@@ -8,7 +9,9 @@ const Homepage = async () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 gap-2">
       Hello, world!
-      <Link href="/api/auth/signin">login</Link>
+      <Button component={Link} href="/api/auth/signout">
+        login
+      </Button>
       {JSON.stringify(session)}
     </main>
   );
