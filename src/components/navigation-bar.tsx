@@ -7,7 +7,7 @@ export const NavigationBar = () => {
   const menus = [{ label: 'History', href: '/history' }];
 
   return (
-    <header className="sticky top-0 flex w-full border-b py-3">
+    <header className="dark:bg-dark-body bg-light-body sticky top-0 z-10 flex w-full border-b py-3">
       <div className="container flex w-full items-center justify-between">
         <Link
           className="text-lg font-bold tracking-tight text-primary-600"

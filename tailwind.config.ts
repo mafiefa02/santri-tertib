@@ -1,12 +1,15 @@
 import type { Config } from 'tailwindcss';
 
+import { mantineTailwind } from './tailwind.mantine.preset';
+
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: ['class', '[data-mantine-color-scheme="dark"]'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  presets: [mantineTailwind],
   theme: {
     container: {
       padding: '2rem',

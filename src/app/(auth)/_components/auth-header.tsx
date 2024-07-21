@@ -5,7 +5,7 @@ import React from 'react';
 
 export const AuthHeader = () => {
   return (
-    <header className="sticky top-0 flex w-full py-3">
+    <header className="dark:bg-dark-body bg-light-body sticky top-0 flex w-full py-3">
       <div className="container flex items-center justify-between text-sm">
         <span className="font-bold">Santri Tertib</span>
         <Button
