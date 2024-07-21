@@ -1,8 +1,7 @@
-import '@mantine/core/styles.css';
 import '@/styles/globals.css';
+import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
-import Head from 'next/head';
 import { Toaster } from 'sonner';
 
 import { primary } from '@/config/font';
@@ -19,15 +18,20 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html data-mantine-color-scheme="light" lang="id">
-      <Head>
-        <ColorSchemeScript defaultColorScheme="light" />
-      </Head>
+    <html data-mantine-color-scheme="auto" lang="id">
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
       <body className={cn('scroll-smooth antialiased', primary.className)}>
-        <MantineProvider defaultColorScheme="light" theme={theme}>
+        <MantineProvider defaultColorScheme="auto" theme={theme}>
           <QueryProvider>
             {children}
-            <Toaster closeButton richColors position="top-center" />
+            <Toaster
+              closeButton
+              richColors
+              position="top-center"
+              theme="system"
+            />
           </QueryProvider>
         </MantineProvider>
       </body>

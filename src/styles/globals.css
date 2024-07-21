@@ -1,5 +1,20 @@
 @layer tailwind {
   @tailwind base;
+
+  /* Use Mantine's default border color for input component */
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--mantine-color-gray-3);
+  }
+
+  [data-mantine-color-scheme='dark'] *,
+  [data-mantine-color-scheme='dark'] ::before,
+  [data-mantine-color-scheme='dark'] ::after {
+    border-color: var(--mantine-color-dark-4);
+  }
 }
 @tailwind components;
 @tailwind utilities;
