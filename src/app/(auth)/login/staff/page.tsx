@@ -11,9 +11,9 @@ const LoginPage = () => {
           <Title className="text-primary-500" order={1}>
             Staff Login
           </Title>
-          <Title className="text-sm font-normal" order={2}>
+          <p className="text-sm">
             Use the given username and password to login
-          </Title>
+          </p>
         </div>
         <LoginForm type="user" />
       </div>

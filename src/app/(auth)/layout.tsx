@@ -16,7 +16,7 @@ const AuthenticationLayout = ({
         <Image
           priority
           alt="Vaksin pertama"
-          className="hidden object-cover contrast-125 saturate-50 lg:block"
+          className="absolute hidden object-cover contrast-125 saturate-50 lg:block"
           height="1280"
           loading="eager"
           src="/bg-auth.jpg"
