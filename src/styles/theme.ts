@@ -1,8 +1,11 @@
 import { createTheme } from '@mantine/core';
 
+import { primary } from '@/config/font';
+
 export const theme = createTheme({
   primaryColor: 'green',
   primaryShade: { light: 5, dark: 8 },
+  fontFamily: primary.style.fontFamily,
   colors: {
     green: [
       '#e9fcee',
