@@ -31,4 +31,8 @@ export default {
     maxAge: 60 * 60 * 24 * 7, // 7 days
   },
   providers: [],
+  pages: {
+    signIn: '/login',
+    signOut: '/logout',
+  },
 } satisfies NextAuthConfig;

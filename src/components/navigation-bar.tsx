@@ -1,9 +1,20 @@
-import { Button } from '@mantine/core';
-import { IconLogin } from '@tabler/icons-react';
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuDropdown,
+  MenuItem,
+  MenuLabel,
+  MenuTarget,
+} from '@mantine/core';
+import { IconLogin, IconLogout } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
-export const NavigationBar = () => {
+import { auth } from '@/config/auth';
+
+export const NavigationBar = async () => {
+  const session = await auth();
   const menus = [{ label: 'History', href: '/history' }];
 
   return (
@@ -31,16 +42,39 @@ export const NavigationBar = () => {
             </Button>
           ))}
 
-          <Button
-            className="shrink-0"
-            component={Link}
-            href="/login"
-            justify="center"
-            rightSection={<IconLogin size={16} />}
-            size="xs"
-          >
-            Login
-          </Button>
+          {session ? (
+            <Menu>
+              <MenuTarget>
+                <Avatar
+                  className="hover:cursor-pointer"
+                  color="green"
+                  size="sm"
+                  src={session.user.avatar ?? undefined}
+                />
+              </MenuTarget>
+              <MenuDropdown>
+                <MenuLabel>Account</MenuLabel>
+                <MenuItem
+                  component={Link}
+                  href="/logout"
+                  leftSection={<IconLogout size={16} />}
+                >
+                  Logout
+                </MenuItem>
+              </MenuDropdown>
+            </Menu>
+          ) : (
+            <Button
+              className="shrink-0"
+              component={Link}
+              href="/login"
+              justify="center"
+              rightSection={<IconLogin size={16} />}
+              size="xs"
+            >
+              Login
+            </Button>
+          )}
         </div>
       </div>
     </header>
