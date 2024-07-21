@@ -7,11 +7,11 @@ import Link from 'next/link';
 import type React from 'react';
 import { type z } from 'zod';
 
-import { useLogin } from '../../_hooks/use-login';
-import { schema } from '../../_schemas/login-schema';
+import { useLogin } from '../_hooks/use-login';
+import { schema } from '../_schemas/login-schema';
 
-export const LoginForm = () => {
-  const { mutate, isPending } = useLogin('student');
+export const LoginForm = ({ type }: { type: 'student' | 'user' }) => {
+  const { mutate, isPending } = useLogin(type);
   const form = useForm<z.infer<typeof schema>>({
     mode: 'uncontrolled',
     validate: zodResolver(schema),
@@ -40,10 +40,13 @@ export const LoginForm = () => {
         <Button fullWidth loading={isPending} type="submit">
           Login
         </Button>
-        <Link className="group text-right text-xs" href="/login/staff">
+        <Link
+          className="group text-right text-xs"
+          href={`/login${type === 'user' ? '' : '/staff'}`}
+        >
           Login as{' '}
           <span className="font-semibold group-hover:text-primary-700">
-            Staff / Admin
+            {type === 'user' ? 'Staff / Admin' : 'Student'}
           </span>
         </Link>
       </div>

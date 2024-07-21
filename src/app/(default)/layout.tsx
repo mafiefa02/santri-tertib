@@ -8,7 +8,7 @@ const DefaultLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
       <NavigationBar />
       {children}
     </div>

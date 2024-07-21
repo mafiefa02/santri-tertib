@@ -27,7 +27,7 @@ export const CopyrightBar = () => {
   ];
 
   return (
-    <footer className="w-full border-t bg-white py-1 text-[0.6rem] dark:bg-black">
+    <footer className="sticky bottom-0 w-full border-t py-1 text-[0.6rem]">
       <div className="container flex items-center justify-between gap-4">
         <div className="flex items-center gap-[3px]">
           <span className="font-semibold">&copy; 2024</span>
