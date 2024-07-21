@@ -1,8 +1,7 @@
 'use client';
 
 import { Button, PasswordInput, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { zodResolver } from 'mantine-form-zod-resolver';
+import { useForm, zodResolver } from '@mantine/form';
 import Link from 'next/link';
 import type React from 'react';
 import { type z } from 'zod';
@@ -19,7 +18,7 @@ export const LoginForm = ({ type }: { type: 'student' | 'user' }) => {
 
   return (
     <form
-      className="min-w-80 space-y-3"
+      className="w-full max-w-80 space-y-3"
       onSubmit={form.onSubmit((values) => mutate(values))}
     >
       <TextInput
@@ -46,7 +45,7 @@ export const LoginForm = ({ type }: { type: 'student' | 'user' }) => {
         >
           Login as{' '}
           <span className="font-semibold group-hover:text-primary-700">
-            {type === 'user' ? 'Staff / Admin' : 'Student'}
+            {type === 'user' ? 'Student' : 'Staff / Admin'}
           </span>
         </Link>
       </div>

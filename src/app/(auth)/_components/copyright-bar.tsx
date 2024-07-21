@@ -27,11 +27,15 @@ export const CopyrightBar = () => {
   ];
 
   return (
-    <footer className="sticky bottom-0 w-full border-t py-1 text-[0.6rem]">
+    <footer className="sticky bottom-0 w-full py-1 text-[0.6rem]">
       <div className="container flex items-center justify-between gap-4">
-        <div className="flex items-center gap-[3px]">
+        <div className="group flex items-center gap-[3px]">
           <span className="font-semibold">&copy; 2024</span>
-          <Link href="https://mbss.sch.id">
+          <Link
+            className="group-hover:text-primary-500"
+            href="https://mbss.sch.id"
+            target="_blank"
+          >
             Madina Boarding School Samarinda
           </Link>
         </div>
@@ -43,6 +47,7 @@ export const CopyrightBar = () => {
               component={Link}
               href={social.href}
               size="compact-xs"
+              target="_blank"
               variant="subtle"
             >
               {social.icon}

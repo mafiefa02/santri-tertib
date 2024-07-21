@@ -15,7 +15,7 @@ export const useLogin = (type: 'student' | 'user') => {
       toast.error(err.message);
     },
     onSuccess: () => {
-      toast.success(`Success login!`);
+      toast.success(`We successfully logged you in!`);
     },
   });
 };

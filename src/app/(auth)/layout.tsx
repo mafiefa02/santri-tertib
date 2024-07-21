@@ -1,7 +1,9 @@
+import { Skeleton } from '@mantine/core';
+import Image from 'next/image';
 import type React from 'react';
 
-import { CopyrightBar } from '@/components/copyright-bar';
-import { NavigationBar } from '@/components/navigation-bar';
+import { AuthHeader } from './_components/auth-header';
+import { CopyrightBar } from './_components/copyright-bar';
 
 const AuthenticationLayout = ({
   children,
@@ -9,11 +11,29 @@ const AuthenticationLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
-      <NavigationBar />
-      {children}
-      <CopyrightBar />
-    </div>
+    <main className="grid lg:grid-cols-2">
+      <div className="relative">
+        <Image
+          priority
+          alt="Vaksin pertama"
+          className="hidden object-cover contrast-125 saturate-50 lg:block"
+          height="1280"
+          loading="eager"
+          src="/bg-auth.jpg"
+          style={{ width: '100%', height: '100%' }}
+          width="1280"
+        />
+        <Skeleton
+          className="absolute top-0 -z-[1] rounded-none"
+          height="100%"
+        />
+      </div>
+      <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+        <AuthHeader />
+        {children}
+        <CopyrightBar />
+      </div>
+    </main>
   );
 };
 
