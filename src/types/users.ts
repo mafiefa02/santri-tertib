@@ -1,3 +1,8 @@
-import type { User } from '@prisma/client';
+import type { $Enums } from '@prisma/client';
 
-export type UserSession = User;
+export interface UserSession {
+  id: string;
+  username: string;
+  avatar?: string;
+  type: $Enums.Role;
+}

@@ -16,6 +16,7 @@ datasource db {
 enum Role {
   ADMIN
   STAFF
+  STUDENT
 }
 
 enum ViolationType {
@@ -31,12 +32,12 @@ enum LeaveType {
 
 model User {
   id          String  @id @default(uuid())
-  type        Role    @default(STAFF)
   displayName String  @default("Santrib")
   avatar      String?
 
   username String    @unique
   password Password?
+  type     Role      @default(STAFF)
 
   RewardRecord    RewardRecord[]
   ViolationRecord ViolationRecord[]
@@ -57,13 +58,15 @@ model StudentPassword {
 }
 
 model Student {
-  id             String @id @default(uuid())
-  fullName       String @db.VarChar(75)
-  identityNumber String @db.VarChar(50)
-  totalPoints    Int    @default(0) @db.SmallInt
+  id             String  @id @default(uuid())
+  fullName       String  @db.VarChar(75)
+  identityNumber String  @db.VarChar(50)
+  avatar         String?
+  totalPoints    Int     @default(0) @db.SmallInt
 
   username String           @unique @db.VarChar(30)
   password StudentPassword?
+  type     Role             @default(STUDENT)
 
   RewardRecord    RewardRecord[]
   ViolationRecord ViolationRecord[]
