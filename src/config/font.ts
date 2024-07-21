@@ -1,3 +1,3 @@
-import { Rubik } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-export const rubik = Rubik();
+export const primary = Inter();

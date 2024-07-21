@@ -2,6 +2,7 @@ import { createTheme } from '@mantine/core';
 
 export const theme = createTheme({
   primaryColor: 'green',
+  primaryShade: { light: 5, dark: 8 },
   colors: {
     green: [
       '#e9fcee',

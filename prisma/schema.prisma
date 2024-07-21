@@ -24,13 +24,18 @@ enum ViolationType {
   HEAVY
 }
 
+enum LeaveType {
+  WITHIN_CITY
+  OUTSIDE_CITY
+}
+
 model User {
   id          String  @id @default(uuid())
   type        Role    @default(STAFF)
-  username    String  @unique
-  displayName String?
+  displayName String  @default("Santrib")
   avatar      String?
 
+  username String    @unique
   password Password?
 
   RewardRecord    RewardRecord[]
@@ -41,18 +46,30 @@ model Password {
   id       String @id @unique
   password String
 
-  user User @relation(fields: [id], references: [id])
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+}
+
+model StudentPassword {
+  id       String @id @unique
+  password String
+
+  Student Student @relation(fields: [id], references: [id], onDelete: Cascade)
 }
 
 model Student {
-  id             Int    @id @default(autoincrement())
-  fullName       String @db.VarChar(50)
-  identityNumber String @unique @db.VarChar(50)
+  id             String @id @default(uuid())
+  fullName       String @db.VarChar(75)
+  identityNumber String @db.VarChar(50)
   totalPoints    Int    @default(0) @db.SmallInt
+
+  username String           @unique @db.VarChar(30)
+  password StudentPassword?
 
   RewardRecord    RewardRecord[]
   ViolationRecord ViolationRecord[]
+  LeaveRecord     LeaveRecord[]
 
+  @@unique([fullName, identityNumber])
   @@index([fullName])
 }
 
@@ -63,13 +80,13 @@ model RewardRecord {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  student   Student @relation(fields: [studentId], references: [id])
-  studentId Int
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId String
 
-  reward   Reward @relation(fields: [rewardId], references: [id])
+  reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
   rewardId Int
 
-  reportedBy User   @relation(fields: [reporterId], references: [id])
+  reportedBy User   @relation(fields: [reporterId], references: [id], onDelete: Cascade)
   reporterId String
 
   @@index([reporterId])
@@ -85,13 +102,13 @@ model ViolationRecord {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  student   Student @relation(fields: [studentId], references: [id])
-  studentId Int
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId String
 
-  violation   Violation @relation(fields: [violationId], references: [id])
+  violation   Violation @relation(fields: [violationId], references: [id], onDelete: Cascade)
   violationId Int
 
-  reportedBy User   @relation(fields: [reporterId], references: [id])
+  reportedBy User   @relation(fields: [reporterId], references: [id], onDelete: Cascade)
   reporterId String
 
   @@index([reporterId])
@@ -118,4 +135,22 @@ model Reward {
   RewardRecord RewardRecord[]
 
   @@index([name])
+}
+
+model LeaveRecord {
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  guardianName String    @db.VarChar(75)
+  timeLimit    DateTime
+  leaveDate    DateTime
+  returnDate   DateTime
+  leaveType    LeaveType
+  destination  String?   @db.VarChar(50)
+
+  Student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId String
+
+  @@index([leaveType])
+  @@index([leaveDate])
+  @@index([returnDate])
 }

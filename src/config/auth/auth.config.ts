@@ -1,11 +1,11 @@
-import type { Prisma } from '@prisma/client';
 import type { NextAuthConfig } from 'next-auth';
 
 import { env } from '@/env';
+import type { UserSession } from '@/types/users';
 
 declare module 'next-auth' {
   interface Session {
-    user: Prisma.UserSelect;
+    user: UserSession;
   }
 }
 
@@ -15,7 +15,7 @@ export default {
       return {
         ...session,
         user: {
-          ...(token.user as Prisma.UserSelect),
+          ...(token.user as UserSession),
         },
       };
     },
@@ -28,7 +28,7 @@ export default {
   secret: env.AUTH_SECRET,
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24 * 30, // 30 days
+    maxAge: 60 * 60 * 24 * 7, // 7 days
   },
   providers: [],
 } satisfies NextAuthConfig;

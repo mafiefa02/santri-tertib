@@ -2,11 +2,14 @@ import '@mantine/core/styles.css';
 import '@/styles/globals.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
+import Head from 'next/head';
+import { Toaster } from 'sonner';
 
-import { rubik } from '@/config/font';
+import { primary } from '@/config/font';
 import { rootMetadata } from '@/config/metadata';
+import { QueryProvider } from '@/providers/query-provider';
 import { theme } from '@/styles/theme';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 export const metadata: Metadata = rootMetadata;
 
@@ -16,13 +19,16 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html lang="id">
-      <head>
-        <ColorSchemeScript defaultColorScheme="auto" />
-      </head>
-      <body className={cn('antialiased', rubik.className)}>
-        <MantineProvider defaultColorScheme="auto" theme={theme}>
-          {children}
+    <html data-mantine-color-scheme="light" lang="id">
+      <Head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </Head>
+      <body className={cn('scroll-smooth antialiased', primary.className)}>
+        <MantineProvider defaultColorScheme="light" theme={theme}>
+          <QueryProvider>
+            {children}
+            <Toaster closeButton richColors position="top-center" />
+          </QueryProvider>
         </MantineProvider>
       </body>
     </html>
