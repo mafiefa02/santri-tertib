@@ -18,7 +18,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html data-mantine-color-scheme="auto" lang="id">
+    <html lang="id">
       <head>
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
