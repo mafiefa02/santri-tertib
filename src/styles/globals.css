@@ -13,10 +13,12 @@
 @import '@mantine/core/styles/Overlay.css';
 @import '@mantine/core/styles/ModalBase.css';
 @import '@mantine/core/styles/Input.css';
+@import '@mantine/core/styles/InlineInput.css';
 @import '@mantine/core/styles/Flex.css';
 
 /* Mantine components */
 @import '@mantine/core/styles/Button.css';
+@import '@mantine/core/styles/Menu.css';
 
 @layer tailwind {
   @tailwind base;
