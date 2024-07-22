@@ -4,20 +4,20 @@ import { primary } from '@/config/font';
 
 export const theme = createTheme({
   primaryColor: 'green',
-  primaryShade: { light: 5, dark: 8 },
+  primaryShade: { light: 7, dark: 9 },
   fontFamily: primary.style.fontFamily,
   colors: {
     green: [
-      '#e9fcee',
-      '#daf2e2',
-      '#b7e2c6',
-      '#92d1a6',
-      '#72c38d',
-      '#5dba7c',
-      '#51b673',
-      '#419f61',
-      '#358e54',
-      '#267c46',
+      '#f1f9f4',
+      '#e3efe7',
+      '#c2ddcb',
+      '#9eccae',
+      '#80bd95',
+      '#6cb485',
+      '#61af7c',
+      '#519a6a',
+      '#46895d',
+      '#37764e',
     ],
   },
 });
