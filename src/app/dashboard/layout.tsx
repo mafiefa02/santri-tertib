@@ -1,6 +1,7 @@
-import { DashboardHeader } from '@/components/dashboard-header';
-import { DashboardSidebar } from '@/components/dashboard-sidebar';
 import { NavigationBar } from '@/components/navigation-bar';
+
+import { DashboardHeader } from './_components/dashboard-header';
+import { DashboardSidebar } from './_components/dashboard-sidebar';
 
 const DashboardLayout = ({
   children,

@@ -35,12 +35,7 @@
   [data-mantine-color-scheme='dark'] *,
   [data-mantine-color-scheme='dark'] ::before,
   [data-mantine-color-scheme='dark'] ::after {
-    border-color: var(--mantine-color-dark-7);
-  }
-
-  /* For dark mode */
-  :root[data-mantine-color-scheme='dark'] {
-    --mantine-color-body: #141414 !important;
+    border-color: var(--mantine-color-dark-5);
   }
 }
 

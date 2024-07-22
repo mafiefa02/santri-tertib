@@ -6,6 +6,7 @@ export const theme = createTheme({
   primaryColor: 'green',
   primaryShade: { light: 7, dark: 9 },
   fontFamily: primary.style.fontFamily,
+  autoContrast: true,
   colors: {
     green: [
       '#f1f9f4',

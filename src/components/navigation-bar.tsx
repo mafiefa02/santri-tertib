@@ -18,6 +18,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { auth } from '@/config/auth';
+import { formatToTitle } from '@/utils';
 
 import { NavigationBarItem } from './navigation-bar-item';
 import { NavigationLogoutButton } from './navigation-logout-button';
@@ -62,14 +63,21 @@ export const NavigationBar = async () => {
           {session ? (
             <Menu>
               <MenuTarget>
-                <Avatar
-                  className="hover:cursor-pointer"
-                  color="green"
-                  src={session.user.avatar ?? undefined}
-                />
+                <div className="flex items-center gap-2 hover:cursor-pointer">
+                  <div className="flex flex-col items-end gap-0 text-xs font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
+                    {session.user.username}
+                    <span className="font-normal">
+                      {formatToTitle(session.user.type)}
+                    </span>
+                  </div>
+                  <Avatar
+                    color="green"
+                    src={session.user.avatar ?? undefined}
+                  />
+                </div>
               </MenuTarget>
               <MenuDropdown>
-                <MenuLabel>Account</MenuLabel>
+                <MenuLabel>Account ({session.user.username})</MenuLabel>
                 <NavigationLogoutButton
                   leftSection={
                     <IconLogout
