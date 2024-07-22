@@ -25,7 +25,7 @@ export const DashboardHeader = () => {
     <header className="sticky top-0 flex w-full items-center justify-between gap-8 bg-light-body dark:bg-dark-body">
       <Title
         className="text-mtn-primary-filled"
-        classNames={{ root: 'text-xl md:text-2xl' }}
+        classNames={{ root: 'text-lg sm:text-xl md:text-2xl' }}
         order={2}
       >
         {formatToTitle(pageTitle)}

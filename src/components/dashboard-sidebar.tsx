@@ -1,5 +1,13 @@
 import { $Enums } from '@prisma/client';
-import { IconLayoutDashboard, IconUser, IconUsers } from '@tabler/icons-react';
+import {
+  IconArchive,
+  IconChecklist,
+  IconFlag,
+  IconLayoutDashboard,
+  IconSchool,
+  IconTrophy,
+  IconUsers,
+} from '@tabler/icons-react';
 import React from 'react';
 
 import { auth } from '@/config/auth';
@@ -13,15 +21,39 @@ const menus = [
     href: '/dashboard',
   },
   {
-    icon: <IconUsers size={16} />,
+    icon: <IconSchool size={16} />,
     label: 'Students',
     href: '/dashboard/students',
     roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
   },
   {
-    icon: <IconUser size={16} />,
+    icon: <IconFlag size={16} />,
+    label: 'Violations',
+    href: '/dashboard/violations',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconTrophy size={16} />,
+    label: 'Rewards',
+    href: '/dashboard/rewards',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconChecklist size={16} />,
+    label: 'Permits',
+    href: '/dashboard/permits',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconUsers size={16} />,
     label: 'Accounts',
     href: '/dashboard/accounts',
+    roles: [$Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconArchive size={16} />,
+    label: 'Records',
+    href: '/dashboard/records',
     roles: [$Enums.Role.ADMIN],
   },
 ];
