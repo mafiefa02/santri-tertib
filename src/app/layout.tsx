@@ -1,5 +1,4 @@
 import '@/styles/globals.css';
-import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
