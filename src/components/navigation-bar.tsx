@@ -3,7 +3,6 @@ import {
   Button,
   Menu,
   MenuDropdown,
-  MenuItem,
   MenuLabel,
   MenuTarget,
 } from '@mantine/core';
@@ -13,6 +12,8 @@ import Link from 'next/link';
 import React from 'react';
 
 import { auth } from '@/config/auth';
+
+import { NavigationLogoutButton } from './navigation-logout-button';
 
 export const NavigationBar = async () => {
   const session = await auth();
@@ -68,13 +69,9 @@ export const NavigationBar = async () => {
               </MenuTarget>
               <MenuDropdown>
                 <MenuLabel>Account</MenuLabel>
-                <MenuItem
-                  component={Link}
-                  href="/logout"
-                  leftSection={<IconLogout size={16} />}
-                >
+                <NavigationLogoutButton leftSection={<IconLogout size={16} />}>
                   Logout
-                </MenuItem>
+                </NavigationLogoutButton>
               </MenuDropdown>
             </Menu>
           ) : (
