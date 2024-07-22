@@ -24,7 +24,7 @@ export const DashboardHeader = () => {
   return (
     <header className="sticky top-0 flex w-full items-center justify-between gap-8 bg-light-body dark:bg-dark-body">
       <Title
-        className="text-mtn-primary-filled"
+        className="text-mtn-primary-filled dark:text-mtn-primary-light-color"
         classNames={{ root: 'text-lg sm:text-xl md:text-2xl' }}
         order={2}
       >
