@@ -37,7 +37,7 @@ export const NavigationBarItem = ({ menu }: { menu: MenuItem }) => {
     <>
       <Button
         key={`${menu.href}mobile`}
-        className="shrink-0 sm:hidden"
+        className="shrink-0 mtn-sm:hidden"
         component={Link}
         href={menu.href}
         justify="center"
@@ -48,7 +48,7 @@ export const NavigationBarItem = ({ menu }: { menu: MenuItem }) => {
       </Button>
       <Button
         key={`${menu.href}desktop`}
-        className="hidden shrink-0 sm:block"
+        className="hidden shrink-0 mtn-sm:block"
         component={Link}
         href={menu.href}
         justify="center"
