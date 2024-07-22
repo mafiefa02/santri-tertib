@@ -7,6 +7,7 @@ import {
   MenuLabel,
   MenuTarget,
 } from '@mantine/core';
+import { $Enums } from '@prisma/client';
 import { IconLogin, IconLogout } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
@@ -15,10 +16,20 @@ import { auth } from '@/config/auth';
 
 export const NavigationBar = async () => {
   const session = await auth();
-  const menus = [{ label: 'History', href: '/history' }];
+  const menus = [
+    {
+      label: 'History',
+      href: '/history',
+    },
+    {
+      label: 'Dashboard',
+      href: '/dashboard',
+      roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+    },
+  ];
 
   return (
-    <header className="dark:bg-dark-body bg-light-body sticky top-0 z-10 flex w-full border-b py-3">
+    <header className="sticky top-0 z-10 flex w-full border-b bg-light-body py-3 dark:bg-dark-body">
       <div className="container flex w-full items-center justify-between">
         <Link
           className="text-lg font-bold tracking-tight text-primary-600"
@@ -28,19 +39,22 @@ export const NavigationBar = async () => {
         </Link>
 
         <div className="flex items-center gap-2">
-          {menus.map((menu) => (
-            <Button
-              key={menu.href}
-              className="shrink-0"
-              component={Link}
-              href={menu.href}
-              justify="center"
-              size="xs"
-              variant="subtle"
-            >
-              {menu.label}
-            </Button>
-          ))}
+          {menus.map((menu) =>
+            !menu.roles ||
+            menu.roles.some((role) => role === session?.user.type) ? (
+              <Button
+                key={menu.href}
+                className="shrink-0"
+                component={Link}
+                href={menu.href}
+                justify="center"
+                size="xs"
+                variant="subtle"
+              >
+                {menu.label}
+              </Button>
+            ) : null,
+          )}
 
           {session ? (
             <Menu>
