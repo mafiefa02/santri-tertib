@@ -15,7 +15,7 @@ const DashboardLayout = ({
         <DashboardHeader />
         <div className="relative grid grid-cols-[auto_1fr] gap-5 overflow-y-auto">
           <DashboardSidebar />
-          <main className="container pl-0 mtn-lg:pl-8">{children}</main>
+          <div className="no-scrollbar overflow-y-auto">{children}</div>
         </div>
       </div>
     </div>
