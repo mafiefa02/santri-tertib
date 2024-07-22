@@ -1,7 +1,7 @@
 const Homepage = () => {
   return (
     <main className="flex flex-grow flex-col items-center justify-center gap-2 text-center">
-      <h1 className="text-6xl font-bold tracking-tight text-primary-600 sm:text-7xl md:text-8xl">
+      <h1 className="text-6xl font-bold tracking-tight text-mtn-primary-filled sm:text-7xl md:text-8xl">
         Santri Tertib
       </h1>
 

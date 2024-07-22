@@ -8,7 +8,7 @@ const LoginPage = () => {
     <div className="container flex flex-grow items-center justify-center">
       <div className="mx-auto flex w-full max-w-80 flex-col gap-5">
         <div className="flex flex-col gap-0 text-pretty">
-          <Title className="text-primary-500" order={1}>
+          <Title className="text-mtn-primary-filled" order={1}>
             Student Login
           </Title>
           <p className="text-xs">

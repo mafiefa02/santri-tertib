@@ -3,9 +3,9 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 
-import { primary } from '@/config/font';
 import { rootMetadata } from '@/config/metadata';
 import { QueryProvider } from '@/providers/query-provider';
+import { primary } from '@/styles/font';
 import { theme } from '@/styles/theme';
 import { cn } from '@/utils';
 

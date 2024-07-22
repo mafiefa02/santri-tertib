@@ -24,15 +24,15 @@ import { NavigationLogoutButton } from './navigation-logout-button';
 
 const menus = [
   {
-    icon: <IconHistory size={16} />,
-    label: 'History',
-    href: '/history',
-  },
-  {
     icon: <IconLayoutDashboard size={16} />,
     label: 'Dashboard',
     href: '/dashboard',
     roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconHistory size={16} />,
+    label: 'History',
+    href: '/history',
   },
 ];
 
@@ -43,7 +43,7 @@ export const NavigationBar = async () => {
       <div className="container flex w-full items-center justify-between">
         <div className="flex items-center gap-3">
           <Link className="flex items-center gap-2" href="/">
-            <h1 className="font-bold text-primary-500">Santrib</h1>
+            <h1 className="font-bold text-mtn-primary-filled">Santrib</h1>
           </Link>
           <Divider orientation="vertical" />
           <div className="flex items-center gap-1">
@@ -70,7 +70,7 @@ export const NavigationBar = async () => {
                 <MenuLabel>Account</MenuLabel>
                 <NavigationLogoutButton
                   leftSection={
-                    <IconLogout className="text-primary-500" size={16} />
+                    <IconLogout className="text-mtn-primary-filled" size={16} />
                   }
                 >
                   Logout
