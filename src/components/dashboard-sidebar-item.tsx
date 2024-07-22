@@ -20,7 +20,8 @@ export const DashboardSidebarItem = ({ menu }: { menu: MenuItem }) => {
     <>
       <Button
         key={`${menu.href}mobile-dashboard-sidebar`}
-        className="shrink-0 mtn-lg:hidden"
+        className="shrink-0"
+        classNames={{ root: 'mtn-lg:hidden' }}
         component={Link}
         href={menu.href}
         justify="center"
@@ -31,7 +32,8 @@ export const DashboardSidebarItem = ({ menu }: { menu: MenuItem }) => {
       </Button>
       <Button
         key={`${menu.href}desktop-dashboard-sidebar`}
-        className="hidden min-w-52 shrink-0 mtn-lg:block"
+        className="min-w-52 shrink-0 mtn-lg:block"
+        classNames={{ root: 'hidden mtn-lg:block' }}
         component={Link}
         href={menu.href}
         justify="left"
