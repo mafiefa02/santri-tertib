@@ -13,14 +13,16 @@ export const StatisticsCard = async ({
   return (
     <Card
       withBorder
-      className="flex cursor-pointer flex-row items-center justify-between hover:bg-gray-50"
+      className="flex cursor-pointer flex-row items-center justify-between"
     >
-      <span className="text-xl font-bold text-mtn-primary-filled">{value}</span>
+      <span className="text-xl font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
+        {value}
+      </span>
       <div className="flex flex-col items-end gap-0">
         <span className="text-xs text-gray-400 dark:text-mtn-dark-2">
           Total recorded
         </span>
-        <span className="text-sm font-semibold text-mtn-primary-filled">
+        <span className="text-sm font-semibold text-mtn-primary-filled dark:text-mtn-primary-light-color">
           {name}
         </span>
       </div>

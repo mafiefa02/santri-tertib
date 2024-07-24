@@ -21,7 +21,7 @@ const AccountsDashboardPage = () => {
       <Paper withBorder>
         <Table highlightOnHover stickyHeader>
           <TableThead>
-            <TableTr className="text-mtn-primary-filled">
+            <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
               {columns.map((column) => (
                 <TableTh key={`${column}column`}>{column}</TableTh>
               ))}
