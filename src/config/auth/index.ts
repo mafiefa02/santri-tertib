@@ -9,16 +9,6 @@ import type { LoginPayload } from '@/types/auth';
 
 import authConfig from './auth.config';
 
-class UserNotFoundError extends CredentialsSignin {
-  code = 'User not found';
-  message = 'User not found!';
-}
-
-class WrongPasswordError extends CredentialsSignin {
-  code = 'Wrong password';
-  message = 'Wrong password!';
-}
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
@@ -48,19 +38,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           });
 
           if (!data) {
-            throw new UserNotFoundError();
+            throw new CredentialsSignin('Invalid credentials!');
           }
 
           const { password: userPassword, ...user } = data;
 
           if (!userPassword) {
-            throw new UserNotFoundError();
+            throw new CredentialsSignin('Invalid credentials!');
           }
 
           const passwordIsSame = await compare(password, userPassword.password);
 
           if (!passwordIsSame) {
-            throw new WrongPasswordError();
+            throw new CredentialsSignin('Invalid credentials!');
           }
 
           await prisma.loginHistory.create({
@@ -89,19 +79,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
 
         if (!data) {
-          throw new UserNotFoundError();
+          throw new CredentialsSignin('Invalid credentials!');
         }
 
         const { password: userPassword, ...user } = data;
 
         if (!userPassword) {
-          throw new UserNotFoundError();
+          throw new CredentialsSignin('Invalid credentials!');
         }
 
         const passwordIsSame = await compare(password, userPassword.password);
 
         if (!passwordIsSame) {
-          throw new WrongPasswordError();
+          throw new CredentialsSignin('Invalid credentials!');
         }
 
         await prisma.loginHistory.create({
