@@ -70,10 +70,7 @@ export const NavigationBar = async () => {
                       {formatToTitle(session.user.type)}
                     </span>
                   </div>
-                  <Avatar
-                    color="green"
-                    src={session.user.avatar ?? undefined}
-                  />
+                  <Avatar color="blue" src={session.user.avatar ?? undefined} />
                 </div>
               </MenuTarget>
               <MenuDropdown>
