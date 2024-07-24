@@ -14,16 +14,16 @@ export const LastLoginLoading = () => {
       {Array.from({ length: 10 }, (_, index) => (
         <TableTr key={index}>
           <TableTd>
-            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-5 w-full" />
           </TableTd>
           <TableTd>
-            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-5 w-full" />
           </TableTd>
           <TableTd>
-            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-5 w-full" />
           </TableTd>
           <TableTd>
-            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-5 w-full" />
           </TableTd>
         </TableTr>
       ))}
