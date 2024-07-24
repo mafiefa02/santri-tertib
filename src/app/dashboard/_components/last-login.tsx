@@ -1,15 +1,10 @@
 import { TableTbody, TableTd, TableTr } from '@mantine/core';
-import dayjs, { extend } from 'dayjs';
-import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import utc from 'dayjs/plugin/utc';
 import React from 'react';
 
 import prisma from '@/config/db';
 
 import { AccountTypeBadge } from './account-type-column';
-
-extend(LocalizedFormat);
-extend(utc);
+import { LastLoginTime } from './last-login-time';
 
 export const LastLogin = async () => {
   const data = await prisma.loginHistory.findMany({
@@ -26,7 +21,7 @@ export const LastLogin = async () => {
             <AccountTypeBadge type={row.accountType} />
           </TableTd>
           <TableTd>
-            {dayjs(row.loginTime).utc().local().format('LL HH:mm:ss')}
+            <LastLoginTime loginTime={row.loginTime} />
           </TableTd>
         </TableTr>
       ))}
