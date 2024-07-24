@@ -157,3 +157,13 @@ model LeaveRecord {
   @@index([leaveDate])
   @@index([returnDate])
 }
+
+model LoginHistory {
+  id        Int      @id @default(autoincrement())
+  loginTime DateTime @default(now())
+
+  accountId       String
+  accountUsername String
+  accountName     String
+  accountType     Role
+}

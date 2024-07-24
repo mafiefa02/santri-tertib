@@ -25,12 +25,7 @@ const RootLayout = ({
         <MantineProvider defaultColorScheme="auto" theme={theme}>
           <QueryProvider>
             {children}
-            <Toaster
-              closeButton
-              richColors
-              position="top-center"
-              theme="system"
-            />
+            <Toaster closeButton richColors theme="system" />
           </QueryProvider>
         </MantineProvider>
       </body>

@@ -10,9 +10,9 @@ export const DashboardHeader = () => {
   const pathname = usePathname();
   const paths = pathname.split('/').filter((val) => val);
   const pageTitle = paths.length > 1 ? paths[1] : 'Dashboard';
-  const items = paths.slice(0, 3).map((path) => ({
+  const items = paths.slice(0, 3).map((path, index) => ({
     title: formatToTitle(path),
-    href: `/${path}`,
+    href: `/${paths.slice(0, index + 1).join('/')}`,
   }));
 
   const crumbs = [{ title: 'Home', href: '/' }, ...items].map((item) => (

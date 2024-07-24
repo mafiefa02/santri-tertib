@@ -63,6 +63,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             throw new WrongPasswordError();
           }
 
+          await prisma.loginHistory.create({
+            data: {
+              accountId: user.id,
+              accountUsername: user.username,
+              accountName: user.fullName,
+              accountType: 'STUDENT',
+            },
+          });
+
           return user;
         }
 
@@ -94,6 +103,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!passwordIsSame) {
           throw new WrongPasswordError();
         }
+
+        await prisma.loginHistory.create({
+          data: {
+            accountId: user.id,
+            accountUsername: user.username,
+            accountName: user.displayName,
+            accountType: user.type,
+          },
+        });
 
         return user;
       },
