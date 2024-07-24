@@ -1,6 +1,7 @@
 'use client';
 
-import { Anchor, Breadcrumbs, Title } from '@mantine/core';
+import { Anchor, Breadcrumbs, Button, Title } from '@mantine/core';
+import { IconHome } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -23,13 +24,23 @@ const DashboardBreadcrumbs = () => {
     href: `/${paths.slice(0, index + 1).join('/')}`,
   }));
 
-  const crumbs = [{ title: 'Home', href: '/' }, ...items].map((item) => (
+  const crumbs = [
+    {
+      title: (
+        <Button className="-mr-1" size="compact-xs" variant="subtle">
+          <IconHome size={12} />
+        </Button>
+      ),
+      href: '/',
+    },
+    ...items,
+  ].map((item) => (
     <Anchor key={item.href + item.href} className="text-xs" href={item.href}>
       {item.title}
     </Anchor>
   ));
 
-  return <Breadcrumbs>{crumbs}</Breadcrumbs>;
+  return <Breadcrumbs className="hidden mtn-xs:flex">{crumbs}</Breadcrumbs>;
 };
 
 const DashboardPageTitle = () => {

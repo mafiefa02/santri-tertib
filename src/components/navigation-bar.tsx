@@ -50,7 +50,7 @@ export const NavigationBar = async () => {
             <Menu>
               <MenuTarget>
                 <div className="flex items-center gap-2 hover:cursor-pointer">
-                  <div className="flex flex-col items-end gap-0 text-xs font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
+                  <div className="hidden flex-col items-end gap-0 text-xs font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color mtn-xs:flex">
                     {session.user.username}
                     <span className="font-normal">
                       {formatToTitle(session.user.type)}
