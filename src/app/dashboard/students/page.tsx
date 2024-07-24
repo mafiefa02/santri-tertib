@@ -12,6 +12,8 @@ import { TableBodyLoading } from '@/components/table-body-loading';
 
 import { StudentsRegistered } from './_components/students-registered';
 
+export const revalidate = 3600; // revalidate every 1 hour
+
 const DashboardStudent = () => {
   return (
     <TableScrollContainer minWidth={768}>

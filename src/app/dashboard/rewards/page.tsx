@@ -12,6 +12,8 @@ import { TableBodyLoading } from '@/components/table-body-loading';
 
 import { RewardsList } from './_components/rewards-list';
 
+export const revalidate = 3600; // revalidate every 1 hour
+
 const DashboardRewardsPage = () => {
   return (
     <TableScrollContainer minWidth={768}>

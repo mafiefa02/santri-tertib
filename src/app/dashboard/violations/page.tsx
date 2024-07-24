@@ -12,6 +12,8 @@ import { TableBodyLoading } from '@/components/table-body-loading';
 
 import { ViolationsList } from './_components/violations-list';
 
+export const revalidate = 3600; // revalidate every 1 hour
+
 const DashboardViolationsPage = () => {
   return (
     <TableScrollContainer minWidth={768}>
