@@ -23,20 +23,6 @@ import { formatToTitle } from '@/utils';
 import { NavigationBarItem } from './navigation-bar-item';
 import { NavigationLogoutButton } from './navigation-logout-button';
 
-const menus = [
-  {
-    icon: <IconLayoutDashboard size={16} />,
-    label: 'Dashboard',
-    href: '/dashboard',
-    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
-  },
-  {
-    icon: <IconHistory size={16} />,
-    label: 'History',
-    href: '/history',
-  },
-];
-
 export const NavigationBar = async () => {
   const session = await auth();
   return (
@@ -104,3 +90,17 @@ export const NavigationBar = async () => {
     </header>
   );
 };
+
+const menus = [
+  {
+    icon: <IconLayoutDashboard size={16} />,
+    label: 'Dashboard',
+    href: '/dashboard',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconHistory size={16} />,
+    label: 'History',
+    href: '/history',
+  },
+];

@@ -1,10 +1,6 @@
 import { Card, Skeleton } from '@mantine/core';
 import type { Prisma } from '@prisma/client';
 
-export const StatisticsCardLoading = () => (
-  <Skeleton className="h-[72px] w-full" />
-);
-
 export const StatisticsCard = async ({
   name,
   fetchFn,
@@ -31,3 +27,7 @@ export const StatisticsCard = async ({
     </Card>
   );
 };
+
+export const StatisticsCardLoading = () => (
+  <Skeleton className="h-[72px] w-full" />
+);

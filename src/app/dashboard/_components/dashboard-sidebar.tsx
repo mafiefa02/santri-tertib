@@ -14,6 +14,21 @@ import { auth } from '@/config/auth';
 
 import { DashboardSidebarItem } from './dashboard-sidebar-item';
 
+export const DashboardSidebar = async () => {
+  const session = await auth();
+
+  return (
+    <nav className="sticky flex w-full flex-col gap-1 bg-light-body dark:bg-dark-body">
+      {menus.map((menu) =>
+        !menu.roles ||
+        menu.roles.some((role) => role === session?.user.type) ? (
+          <DashboardSidebarItem key={menu.href} menu={menu} />
+        ) : null,
+      )}
+    </nav>
+  );
+};
+
 const menus = [
   {
     icon: <IconLayoutDashboard size={16} />,
@@ -57,18 +72,3 @@ const menus = [
     roles: [$Enums.Role.ADMIN],
   },
 ];
-
-export const DashboardSidebar = async () => {
-  const session = await auth();
-
-  return (
-    <nav className="sticky flex w-full flex-col gap-1 bg-light-body dark:bg-dark-body">
-      {menus.map((menu) =>
-        !menu.roles ||
-        menu.roles.some((role) => role === session?.user.type) ? (
-          <DashboardSidebarItem key={menu.href} menu={menu} />
-        ) : null,
-      )}
-    </nav>
-  );
-};
