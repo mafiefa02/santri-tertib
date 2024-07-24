@@ -3,6 +3,8 @@ import { NavigationBar } from '@/components/navigation-bar';
 import { DashboardHeader } from './_components/dashboard-header';
 import { DashboardSidebar } from './_components/dashboard-sidebar';
 
+export const revalidate = 180;
+
 const DashboardLayout = ({
   children,
 }: Readonly<{
