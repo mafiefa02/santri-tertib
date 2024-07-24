@@ -1,7 +1,40 @@
-import React from 'react';
+import {
+  Paper,
+  Table,
+  TableScrollContainer,
+  TableTh,
+  TableThead,
+  TableTr,
+} from '@mantine/core';
+import React, { Suspense } from 'react';
+
+import { TableBodyLoading } from '@/components/table-body-loading';
+
+import { RewardsList } from './_components/rewards-list';
 
 const DashboardRewardsPage = () => {
-  return <div>DashboardRewardsPage</div>;
+  return (
+    <TableScrollContainer minWidth={768}>
+      <Paper withBorder>
+        <Table highlightOnHover stickyHeader>
+          <TableThead>
+            <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
+              {columns.map((column) => (
+                <TableTh key={`${column}column`}>{column}</TableTh>
+              ))}
+            </TableTr>
+          </TableThead>
+          <Suspense
+            fallback={<TableBodyLoading columnCount={columns.length} />}
+          >
+            <RewardsList />
+          </Suspense>
+        </Table>
+      </Paper>
+    </TableScrollContainer>
+  );
 };
+
+const columns = ['Reward Name', 'Points'];
 
 export default DashboardRewardsPage;

@@ -2,20 +2,16 @@ import { TableTbody, TableTd, TableTr } from '@mantine/core';
 
 import prisma from '@/config/db';
 
-import { AccountTypeBadge } from '../../_components/account-type-column';
-
-export const AccountsRegistered = async () => {
-  const data = await prisma.user.findMany();
+export const ViolationsList = async () => {
+  const data = await prisma.violation.findMany();
   return (
     <TableTbody>
       {data.length > 0 ? (
         data.map((row) => (
           <TableTr key={row.id}>
-            <TableTd>{row.displayName}</TableTd>
-            <TableTd>{row.username}</TableTd>
-            <TableTd>
-              <AccountTypeBadge type={row.type} />
-            </TableTd>
+            <TableTd>{row.name}</TableTd>
+            <TableTd>{row.type}</TableTd>
+            <TableTd>{row.points}</TableTd>
           </TableTr>
         ))
       ) : (

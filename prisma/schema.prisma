@@ -150,7 +150,7 @@ model LeaveRecord {
   leaveType    LeaveType
   destination  String?   @db.VarChar(50)
 
-  Student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId String
 
   @@index([leaveType])
