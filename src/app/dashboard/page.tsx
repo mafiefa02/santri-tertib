@@ -8,13 +8,16 @@ import {
 } from '@mantine/core';
 import { Suspense } from 'react';
 
+import { TableBodyLoading } from '@/components/table-body-loading';
 import prisma from '@/config/db';
 
-import { LastLogin, LastLoginLoading } from './_components/last-login';
+import { LastLogin } from './_components/last-login';
 import {
   StatisticsCard,
   StatisticsCardLoading,
 } from './_components/statistics-card';
+
+const columns = ['Account Name', 'Username', 'Type', 'Login Time'];
 
 const DashboardPage = () => {
   return (
@@ -38,17 +41,18 @@ const DashboardPage = () => {
       </div>
 
       <TableScrollContainer minWidth={768}>
-        <Paper withBorder className="overflow-sho">
+        <Paper withBorder>
           <Table highlightOnHover stickyHeader>
             <TableThead>
               <TableTr className="text-mtn-primary-filled">
-                <TableTh>Account Name</TableTh>
-                <TableTh>Username</TableTh>
-                <TableTh>Type</TableTh>
-                <TableTh>Login Time</TableTh>
+                {columns.map((column) => (
+                  <TableTh key={`${column}column`}>{column}</TableTh>
+                ))}
               </TableTr>
             </TableThead>
-            <Suspense fallback={<LastLoginLoading />}>
+            <Suspense
+              fallback={<TableBodyLoading columnCount={columns.length} />}
+            >
               <LastLogin />
             </Suspense>
           </Table>

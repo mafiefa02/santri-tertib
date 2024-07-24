@@ -12,28 +12,19 @@ const config: Config = {
   presets: [mantineTailwind],
   theme: {
     container: {
-      padding: '2rem',
       center: true,
+      padding: {
+        DEFAULT: '1rem',
+        lg: '2rem',
+        xl: '4rem',
+      },
       screens: {
-        '2xl': '1440px',
+        md: '992px', // 62em
+        lg: '1200px', // 75em
+        xl: '1408px', // 88em
       },
     },
-    extend: {
-      colors: {
-        primary: {
-          50: 'var(--mantine-primary-color-0)',
-          100: 'var(--mantine-primary-color-1)',
-          200: 'var(--mantine-primary-color-2)',
-          300: 'var(--mantine-primary-color-3)',
-          400: 'var(--mantine-primary-color-4)',
-          500: 'var(--mantine-primary-color-5)',
-          600: 'var(--mantine-primary-color-6)',
-          700: 'var(--mantine-primary-color-7)',
-          800: 'var(--mantine-primary-color-8)',
-          900: 'var(--mantine-primary-color-9)',
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
