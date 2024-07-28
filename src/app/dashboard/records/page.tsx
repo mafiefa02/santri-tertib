@@ -19,18 +19,7 @@ const DashboardRecordsPage = ({
   searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const type = searchParams.type as string | undefined;
-  const columns =
-    type === 'rewards'
-      ? ['Student Name', 'Reward', 'Date', 'Reporter', 'Description', 'Proof']
-      : [
-          'Student Name',
-          'Violation',
-          'Date',
-          'Reporter',
-          'Description',
-          'Witness',
-          'Proof',
-        ];
+  const columns = type === 'rewards' ? rewardColumns : violationColumns;
 
   return (
     <TableScrollContainer minWidth={768}>
@@ -53,5 +42,24 @@ const DashboardRecordsPage = ({
     </TableScrollContainer>
   );
 };
+
+const rewardColumns = [
+  'Student Name',
+  'Reward',
+  'Date',
+  'Reporter',
+  'Description',
+  'Proof',
+];
+
+const violationColumns = [
+  'Student Name',
+  'Violation',
+  'Date',
+  'Reporter',
+  'Description',
+  'Witness',
+  'Proof',
+];
 
 export default DashboardRecordsPage;

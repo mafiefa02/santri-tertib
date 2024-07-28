@@ -18,31 +18,33 @@ export const ViolationRecords = async () => {
     },
   });
 
+  if (data.length === 0) return <EmptyState />;
+
   return (
     <TableTbody>
-      {data.length > 0 ? (
-        data.map((row) => (
-          <TableTr key={row.id}>
-            <TableTd>{row.student.fullName}</TableTd>
-            <TableTd>{row.violation.name}</TableTd>
-            <TableTd>{dayjs(row.createdAt).format()}</TableTd>
-            <TableTd>{row.reportedBy.displayName}</TableTd>
-            <TableTd>{row.description}</TableTd>
-            <TableTd>{row.witness}</TableTd>
-            <TableTd>{row.proof}</TableTd>
-          </TableTr>
-        ))
-      ) : (
-        <TableTr>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
-          <TableTd>-</TableTd>
+      {data.map((row) => (
+        <TableTr key={row.id}>
+          <TableTd>{row.student.fullName}</TableTd>
+          <TableTd>{row.violation.name}</TableTd>
+          <TableTd>{dayjs(row.createdAt).format()}</TableTd>
+          <TableTd>{row.reportedBy.displayName}</TableTd>
+          <TableTd>{row.description}</TableTd>
+          <TableTd>{row.witness}</TableTd>
+          <TableTd>{row.proof}</TableTd>
         </TableTr>
-      )}
+      ))}
     </TableTbody>
   );
 };
+
+const EmptyState = () => (
+  <TableTr>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+    <TableTd>-</TableTd>
+  </TableTr>
+);

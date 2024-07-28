@@ -3,12 +3,14 @@ import {
   Button,
   Divider,
   Menu,
+  MenuDivider,
   MenuDropdown,
   MenuLabel,
   MenuTarget,
 } from '@mantine/core';
 import { $Enums } from '@prisma/client';
 import {
+  IconChecklist,
   IconHistory,
   IconLayoutDashboard,
   IconLogin,
@@ -18,7 +20,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { auth } from '@/config/auth';
-import { formatToTitle } from '@/utils';
+import { formatToTitle } from '@/utils/format-to-title';
 
 import { NavigationBarItem } from './navigation-bar-item';
 import { NavigationLogoutButton } from './navigation-logout-button';
@@ -49,18 +51,20 @@ export const NavigationBar = async () => {
           {session ? (
             <Menu>
               <MenuTarget>
-                <div className="flex items-center gap-2 hover:cursor-pointer">
-                  <div className="hidden flex-col items-end gap-0 text-xs font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color mtn-xs:flex">
-                    {session.user.username}
-                    <span className="font-normal">
-                      {formatToTitle(session.user.type)}
-                    </span>
-                  </div>
-                  <Avatar color="blue" src={session.user.avatar ?? undefined} />
-                </div>
+                <Avatar
+                  className="hover:cursor-pointer"
+                  color="blue"
+                  src={session.user.avatar ?? undefined}
+                />
               </MenuTarget>
               <MenuDropdown>
-                <MenuLabel>Account ({session.user.username})</MenuLabel>
+                <MenuLabel className="flex items-center gap-4 font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
+                  {session.user.username}
+                  <span className="font-normal">
+                    {formatToTitle(session.user.type)}
+                  </span>
+                </MenuLabel>
+                <MenuDivider />
                 <NavigationLogoutButton
                   leftSection={
                     <IconLogout
@@ -102,5 +106,11 @@ const menus = [
     icon: <IconHistory size={16} />,
     label: 'History',
     href: '/history',
+  },
+  {
+    icon: <IconChecklist size={16} />,
+    label: 'Permits',
+    href: '/permits',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN, $Enums.Role.STUDENT],
   },
 ];

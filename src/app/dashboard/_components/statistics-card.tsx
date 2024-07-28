@@ -13,7 +13,7 @@ export const StatisticsCard = async ({
   return (
     <Card
       withBorder
-      className="flex cursor-pointer flex-row items-center justify-between"
+      className="flex cursor-pointer flex-row items-center justify-between bg-light-body hover:bg-neutral-100 dark:bg-dark-body hover:dark:bg-neutral-700"
     >
       <span className="text-xl font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
         {value}

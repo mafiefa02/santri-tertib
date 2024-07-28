@@ -7,7 +7,7 @@ import { rootMetadata } from '@/config/metadata';
 import { QueryProvider } from '@/providers/query-provider';
 import { primary } from '@/styles/font';
 import { theme } from '@/styles/theme';
-import { cn } from '@/utils';
+import { cn } from '@/utils/cn';
 
 export const metadata: Metadata = rootMetadata;
 

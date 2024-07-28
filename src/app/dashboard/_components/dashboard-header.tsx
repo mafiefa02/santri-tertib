@@ -5,7 +5,7 @@ import { IconHome } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import { formatToTitle } from '@/utils';
+import { formatToTitle } from '@/utils/format-to-title';
 
 export const DashboardHeader = () => {
   return (
