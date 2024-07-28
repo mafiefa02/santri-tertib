@@ -44,9 +44,11 @@ export const AccountsRegistered = async ({
 };
 
 const EmptyState = () => (
-  <TableTr>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-  </TableTr>
+  <TableTbody>
+    <TableTr>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+    </TableTr>
+  </TableTbody>
 );

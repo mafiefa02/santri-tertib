@@ -33,14 +33,16 @@ export const PermitRecords = async () => {
 };
 
 const EmptyState = () => (
-  <TableTr>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-    <TableTd>-</TableTd>
-  </TableTr>
+  <TableTbody>
+    <TableTr>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+      <TableTd>-</TableTd>
+    </TableTr>
+  </TableTbody>
 );
