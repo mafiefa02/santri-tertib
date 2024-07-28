@@ -8,31 +8,40 @@ export const middleware = async (request: NextRequest) => {
   const session = await auth();
   const pathname = request.nextUrl.pathname;
 
-  if (pathname.startsWith('/dashboard')) {
-    // Protects '/dashboard' route from non-authenticated users or from students;
-    if (!session || session.user.type === 'STUDENT') {
+  // Handling unauthenticated users
+  if (!session) {
+    // If they try to access '/dashboard', redirect them to login.
+    if (pathname.startsWith('/dashboard')) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
+
+    return NextResponse.next();
   }
 
-  if (!session && pathname.startsWith('/logout')) {
-    // If non-authenticated users tries to access log out page, they'll get redirected back to homepage
-    return NextResponse.redirect(new URL('/', request.url));
-  }
+  // Handling authenticated users
 
-  if (session) {
-    // Protect authenticated user to access login page
-    if (pathname.startsWith('/login')) {
-      // Redirects back based on user's role
-      if (session.user.type === 'STUDENT') {
-        // Students should redirect to '/'
-        return NextResponse.redirect(new URL('/', request.url));
-      }
-
-      // While other account types should redirect to dashboard
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+  if (pathname.startsWith('/dashboard')) {
+    // Redirect students to homepage when they try to access '/dashboard'
+    if (session.user.type === 'STUDENT') {
+      return NextResponse.redirect(new URL('/', request.url));
     }
+
+    return NextResponse.next();
   }
+
+  // Protect authenticated user to access login page
+  if (pathname.startsWith('/login')) {
+    // Redirects back based on user's role
+    if (session.user.type === 'STUDENT') {
+      // Students should redirect to '/'
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+
+    // While other account types should redirect to dashboard
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  return NextResponse.next();
 };
 
 export const config = {
