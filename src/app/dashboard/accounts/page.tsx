@@ -5,14 +5,13 @@ import {
   TableTh,
   TableThead,
   TableTr,
-  TextInput,
 } from '@mantine/core';
 import type { $Enums } from '@prisma/client';
-import { IconSearch } from '@tabler/icons-react';
 import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-body-loading';
 
+import { AccountSearch } from './_components/account-search';
 import { AccountTypeFilter } from './_components/account-type-filter';
 import { AccountsRegistered } from './_components/accounts-registered';
 
@@ -24,17 +23,16 @@ const AccountsDashboardPage = ({
   searchParams: Record<string, string | string[] | undefined>;
 }) => {
   const type = searchParams.type as $Enums.Role | undefined;
+  const search = searchParams.search as string | undefined;
 
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <TextInput
-          className="w-full min-w-fit md:max-w-80"
-          leftSection={<IconSearch size={16} />}
-          placeholder="Search accounts"
-        />
         <Suspense>
-          <AccountTypeFilter />
+          <AccountSearch search={search} />
+        </Suspense>
+        <Suspense>
+          <AccountTypeFilter type={type} />
         </Suspense>
       </div>
       <TableScrollContainer minWidth={768}>
@@ -50,7 +48,7 @@ const AccountsDashboardPage = ({
             <Suspense
               fallback={<TableBodyLoading columnCount={columns.length} />}
             >
-              <AccountsRegistered type={type} />
+              <AccountsRegistered search={search} type={type} />
             </Suspense>
           </Table>
         </Paper>

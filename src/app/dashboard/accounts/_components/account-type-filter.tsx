@@ -11,13 +11,14 @@ const data = [
   { value: $Enums.Role.STAFF, label: 'Staff' },
 ];
 
-export const AccountTypeFilter = () => {
+export const AccountTypeFilter = ({ type }: { type?: $Enums.Role }) => {
   const { updateQuery } = useQueryString();
 
   return (
     <Select
       className="w-full md:max-w-52"
       data={data}
+      defaultValue={type}
       placeholder="Select account type"
       onChange={(value) => updateQuery({ name: 'type', value })}
     />

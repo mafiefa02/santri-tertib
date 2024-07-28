@@ -5,8 +5,26 @@ import prisma from '@/config/db';
 
 import { AccountTypeBadge } from '../../_components/account-type-column';
 
-export const AccountsRegistered = async ({ type }: { type?: $Enums.Role }) => {
-  const data = await prisma.user.findMany({ where: { type } });
+export const AccountsRegistered = async ({
+  type,
+  search,
+}: {
+  type?: $Enums.Role;
+  search?: string;
+}) => {
+  const data = await prisma.user.findMany({
+    where: {
+      AND: [
+        { type },
+        {
+          OR: [
+            { username: { contains: search } },
+            { displayName: { contains: search } },
+          ],
+        },
+      ],
+    },
+  });
 
   if (data.length === 0) return <EmptyState />;
 
