@@ -21,6 +21,7 @@ export const NavigationBarItem = ({ menu }: { menu: MenuItem }) => {
     return (
       <Button
         key={menu.href}
+        aria-label={`Navigation ${menu.label}`}
         className="shrink-0"
         component={Link}
         href={menu.href}
@@ -37,6 +38,7 @@ export const NavigationBarItem = ({ menu }: { menu: MenuItem }) => {
     <>
       <Button
         key={`${menu.href}mobile`}
+        aria-label={`Navigation ${menu.label}`}
         className="shrink-0"
         classNames={{ root: 'mtn-xs:hidden' }}
         component={Link}
@@ -49,6 +51,7 @@ export const NavigationBarItem = ({ menu }: { menu: MenuItem }) => {
       </Button>
       <Button
         key={`${menu.href}desktop`}
+        aria-label={`Navigation ${menu.label}`}
         className="shrink-0"
         classNames={{ root: 'hidden mtn-xs:block' }}
         component={Link}

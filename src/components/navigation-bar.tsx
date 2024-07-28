@@ -52,8 +52,10 @@ export const NavigationBar = async () => {
             <Menu>
               <MenuTarget>
                 <Avatar
+                  aria-label="Account action button"
                   className="hover:cursor-pointer"
                   color="blue"
+                  role="button"
                   src={session.user.avatar ?? undefined}
                 />
               </MenuTarget>
@@ -79,6 +81,7 @@ export const NavigationBar = async () => {
             </Menu>
           ) : (
             <Button
+              aria-label="Login button"
               className="shrink-0"
               component={Link}
               href="/login"

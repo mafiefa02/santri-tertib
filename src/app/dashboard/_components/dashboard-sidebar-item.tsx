@@ -20,6 +20,7 @@ export const DashboardSidebarItem = ({ menu }: { menu: MenuItem }) => {
     <>
       <Button
         key={`${menu.href}mobile-dashboard-sidebar`}
+        aria-label={`Navigation dashboard ${menu.label}`}
         className="shrink-0"
         classNames={{ root: 'mtn-lg:hidden' }}
         component={Link}
@@ -32,6 +33,7 @@ export const DashboardSidebarItem = ({ menu }: { menu: MenuItem }) => {
       </Button>
       <Button
         key={`${menu.href}desktop-dashboard-sidebar`}
+        aria-label={`Navigation dashboard ${menu.label}`}
         className="min-w-52 shrink-0 mtn-lg:block"
         classNames={{ root: 'hidden mtn-lg:block' }}
         component={Link}

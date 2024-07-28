@@ -12,7 +12,7 @@ export const NavigationLogoutButton = (props: MenuItemProps) => {
   };
 
   return (
-    <MenuItem {...props} onClick={logout}>
+    <MenuItem aria-label="Logout button" {...props} onClick={logout}>
       {props.children}
     </MenuItem>
   );
