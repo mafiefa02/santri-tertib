@@ -14,6 +14,7 @@ import { TableBodyLoading } from '@/components/table-body-loading';
 import { AccountSearch } from './_components/account-search';
 import { AccountTypeFilter } from './_components/account-type-filter';
 import { AccountsRegistered } from './_components/accounts-registered';
+import { AddAccountModal } from './_components/add-account-modal';
 
 export const revalidate = 600; // opt-in to revalidate every 10 minutes
 
@@ -31,11 +32,14 @@ const AccountsDashboardPage = ({
         <Suspense>
           <AccountSearch search={search} />
         </Suspense>
-        <Suspense>
-          <AccountTypeFilter type={type} />
-        </Suspense>
+        <div className="flex w-full items-center gap-2 md:max-w-max">
+          <Suspense>
+            <AccountTypeFilter type={type} />
+          </Suspense>
+          <AddAccountModal />
+        </div>
       </div>
-      <TableScrollContainer minWidth={768}>
+      <TableScrollContainer minWidth={340}>
         <Paper withBorder>
           <Table highlightOnHover stickyHeader>
             <TableThead>

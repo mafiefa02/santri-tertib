@@ -32,7 +32,7 @@ export const DashboardSidebar = async () => {
 const menus = [
   {
     icon: <IconLayoutDashboard size={16} />,
-    label: 'Home',
+    label: 'Dashboard',
     href: '/dashboard',
   },
   {

@@ -1,15 +1,13 @@
 'use client';
 
 import { Select } from '@mantine/core';
-import { $Enums } from '@prisma/client';
+import { type $Enums } from '@prisma/client';
 import React from 'react';
 
 import { useQueryString } from '@/hooks/use-query-string';
+import { getAccountTypeSelectOptions } from '@/utils/get-account-type-select-options';
 
-const data = [
-  { value: $Enums.Role.ADMIN, label: 'Admin' },
-  { value: $Enums.Role.STAFF, label: 'Staff' },
-];
+const data = getAccountTypeSelectOptions();
 
 export const AccountTypeFilter = ({ type }: { type?: $Enums.Role }) => {
   const { updateQuery } = useQueryString();
