@@ -1,6 +1,6 @@
 'use client';
 
-import { ActionIcon, Button, Modal } from '@mantine/core';
+import { ActionIcon, Button, Modal, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import type { User } from '@prisma/client';
 import { IconTrash } from '@tabler/icons-react';
@@ -40,9 +40,11 @@ export const DeleteAccountModal = ({
           </div>
         </div>
       </Modal>
-      <ActionIcon onClick={open}>
-        <IconTrash size={16} />
-      </ActionIcon>
+      <Tooltip label="Delete account">
+        <ActionIcon onClick={open}>
+          <IconTrash size={16} />
+        </ActionIcon>
+      </Tooltip>
     </>
   );
 };
