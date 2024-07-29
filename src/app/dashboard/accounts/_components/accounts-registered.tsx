@@ -1,9 +1,13 @@
-import { TableTbody, TableTd, TableTr } from '@mantine/core';
+import { ActionIconGroup, TableTbody, TableTd, TableTr } from '@mantine/core';
 import type { $Enums } from '@prisma/client';
 
+import { auth } from '@/config/auth';
 import prisma from '@/config/db';
 
 import { AccountTypeBadge } from '../../_components/account-type-column';
+
+import { DeleteAccountModal } from './delete-account-modal';
+import { ResetPasswordModal } from './reset-password-modal';
 
 export const AccountsRegistered = async ({
   type,
@@ -12,6 +16,7 @@ export const AccountsRegistered = async ({
   type?: $Enums.Role;
   search?: string;
 }) => {
+  const session = await auth();
   const data = await prisma.user.findMany({
     where: {
       AND: [
@@ -37,6 +42,20 @@ export const AccountsRegistered = async ({
           <TableTd>
             <AccountTypeBadge type={row.type} />
           </TableTd>
+          <TableTd>
+            {session?.user.id === row.id ? null : (
+              <ActionIconGroup className="space-x-2">
+                <ResetPasswordModal
+                  userDisplayName={row.displayName}
+                  userId={row.id}
+                />
+                <DeleteAccountModal
+                  userDisplayName={row.displayName}
+                  userId={row.id}
+                />
+              </ActionIconGroup>
+            )}
+          </TableTd>
         </TableTr>
       ))}
     </TableTbody>
@@ -46,6 +65,7 @@ export const AccountsRegistered = async ({
 const EmptyState = () => (
   <TableTbody>
     <TableTr>
+      <TableTd>-</TableTd>
       <TableTd>-</TableTd>
       <TableTd>-</TableTd>
       <TableTd>-</TableTd>

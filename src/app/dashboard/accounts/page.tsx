@@ -39,7 +39,7 @@ const AccountsDashboardPage = ({
           <AddAccountModal />
         </div>
       </div>
-      <TableScrollContainer minWidth={340}>
+      <TableScrollContainer minWidth={480}>
         <Paper withBorder>
           <Table highlightOnHover stickyHeader>
             <TableThead>
@@ -61,6 +61,6 @@ const AccountsDashboardPage = ({
   );
 };
 
-const columns = ['Account Name', 'Username', 'Type'];
+const columns = ['Account Name', 'Username', 'Type', 'Actions'];
 
 export default AccountsDashboardPage;
