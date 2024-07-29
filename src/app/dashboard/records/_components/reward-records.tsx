@@ -27,7 +27,7 @@ export const RewardRecords = async () => {
           <TableTd>{row.student.fullName}</TableTd>
           <TableTd>{row.reward.name}</TableTd>
           <TableTd>{dayjs(row.createdAt).format()}</TableTd>
-          <TableTd>{row.reportedBy.displayName}</TableTd>
+          <TableTd>{row.reportedBy?.displayName ?? '-'}</TableTd>
           <TableTd>{row.description}</TableTd>
           <TableTd>{row.proof}</TableTd>
         </TableTr>

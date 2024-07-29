@@ -89,8 +89,8 @@ model RewardRecord {
   reward   Reward @relation(fields: [rewardId], references: [id], onDelete: Cascade)
   rewardId Int
 
-  reportedBy User   @relation(fields: [reporterId], references: [id], onDelete: Cascade)
-  reporterId String
+  reportedBy User?   @relation(fields: [reporterId], references: [id], onDelete: SetNull)
+  reporterId String?
 
   @@index([reporterId])
   @@index([studentId])
@@ -111,8 +111,8 @@ model ViolationRecord {
   violation   Violation @relation(fields: [violationId], references: [id], onDelete: Cascade)
   violationId Int
 
-  reportedBy User   @relation(fields: [reporterId], references: [id], onDelete: Cascade)
-  reporterId String
+  reportedBy User?   @relation(fields: [reporterId], references: [id], onDelete: SetNull)
+  reporterId String?
 
   @@index([reporterId])
   @@index([studentId])

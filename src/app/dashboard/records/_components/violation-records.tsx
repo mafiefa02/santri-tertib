@@ -27,7 +27,7 @@ export const ViolationRecords = async () => {
           <TableTd>{row.student.fullName}</TableTd>
           <TableTd>{row.violation.name}</TableTd>
           <TableTd>{dayjs(row.createdAt).format()}</TableTd>
-          <TableTd>{row.reportedBy.displayName}</TableTd>
+          <TableTd>{row.reportedBy?.displayName ?? '-'}</TableTd>
           <TableTd>{row.description}</TableTd>
           <TableTd>{row.witness}</TableTd>
           <TableTd>{row.proof}</TableTd>
