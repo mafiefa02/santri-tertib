@@ -11,7 +11,8 @@ import {
 import { useForm, zodResolver } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { $Enums } from '@prisma/client';
-import { IconHelpCircle, IconPlus } from '@tabler/icons-react';
+import { IconClipboard, IconPlus } from '@tabler/icons-react';
+import { toast } from 'sonner';
 import type { z } from 'zod';
 
 import { getAccountTypeSelectOptions } from '@/utils/get-account-type-select-options';
@@ -75,8 +76,17 @@ const ModalContent = ({ close }: { close: () => void }) => {
         description="This password is auto-generated and can't be changed."
         label="Password"
         rightSection={
-          <Tooltip label="Make sure to copy this password in a safe place">
-            <IconHelpCircle size={16} />
+          <Tooltip
+            className="hover:cursor-pointer"
+            label="Click to copy this password"
+          >
+            <IconClipboard
+              size={16}
+              onClick={() => {
+                void navigator.clipboard.writeText(form.getValues().password);
+                toast.info('Password copied to clipboard!');
+              }}
+            />
           </Tooltip>
         }
         {...form.getInputProps('password')}
