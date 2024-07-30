@@ -5,11 +5,11 @@ import React from 'react';
 
 export const AuthHeader = () => {
   return (
-    <header className="dark:bg-dark-body bg-light-body sticky top-0 flex w-full py-3">
+    <header className="sticky top-0 flex w-full bg-light-body py-3 dark:bg-dark-body">
       <div className="container flex items-center justify-between text-sm">
         <span className="font-bold">Santri Tertib</span>
         <Button
-          className="group text-xs font-normal"
+          className="group px-0 text-xs font-normal"
           component={Link}
           href="/"
           variant="transparent"
