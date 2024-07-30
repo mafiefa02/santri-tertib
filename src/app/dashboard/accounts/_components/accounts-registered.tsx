@@ -1,10 +1,12 @@
 import { ActionIconGroup, TableTbody, TableTd, TableTr } from '@mantine/core';
-import type { $Enums } from '@prisma/client';
 
 import { auth } from '@/config/auth';
-import prisma from '@/config/db';
 
 import { AccountTypeBadge } from '../../_components/account-type-column';
+import {
+  type FindManyUserParam,
+  findManyUser,
+} from '../_queries/find-many-user';
 
 import { DeleteAccountModal } from './delete-account-modal';
 import { ResetPasswordModal } from './reset-password-modal';
@@ -12,24 +14,9 @@ import { ResetPasswordModal } from './reset-password-modal';
 export const AccountsRegistered = async ({
   type,
   search,
-}: {
-  type?: $Enums.Role;
-  search?: string;
-}) => {
+}: FindManyUserParam) => {
   const session = await auth();
-  const data = await prisma.user.findMany({
-    where: {
-      AND: [
-        { type },
-        {
-          OR: [
-            { username: { contains: search } },
-            { displayName: { contains: search } },
-          ],
-        },
-      ],
-    },
-  });
+  const data = await findManyUser({ type, search });
 
   if (data.length === 0) return <EmptyState />;
 

@@ -18,13 +18,17 @@ import { AddAccountModal } from './_components/add-account-modal';
 
 export const revalidate = 600; // opt-in to revalidate every 10 minutes
 
+interface SearchParams {
+  type?: $Enums.Role;
+  search?: string;
+}
+
 const AccountsDashboardPage = ({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: SearchParams;
 }) => {
-  const type = searchParams.type as $Enums.Role | undefined;
-  const search = searchParams.search as string | undefined;
+  const { type, search } = searchParams;
 
   return (
     <div className="flex w-full flex-col gap-4">

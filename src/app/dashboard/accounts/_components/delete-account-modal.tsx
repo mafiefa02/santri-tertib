@@ -36,7 +36,7 @@ export const DeleteAccountModal = ({
             </Button>
             <Button
               fullWidth
-              className="bg-red-600 hover:bg-red-500"
+              color="red"
               loading={isPending}
               onClick={() => mutate()}
             >
@@ -46,7 +46,7 @@ export const DeleteAccountModal = ({
         </div>
       </Modal>
       <Tooltip label="Delete account">
-        <ActionIcon onClick={open}>
+        <ActionIcon color="red" onClick={open}>
           <IconTrash size={16} />
         </ActionIcon>
       </Tooltip>

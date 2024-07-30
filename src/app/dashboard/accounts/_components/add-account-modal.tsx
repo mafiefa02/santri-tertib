@@ -114,7 +114,7 @@ const ModalContent = ({ close }: { close: () => void }) => {
           fullWidth
           disabled={isPending}
           type="button"
-          variant="outline"
+          variant="default"
           onClick={close}
         >
           Cancel
