@@ -39,38 +39,49 @@ model User {
   password Password?
   type     Role      @default(STAFF)
 
-  RewardRecord    RewardRecord[]
-  ViolationRecord ViolationRecord[]
+  rewardRecords    RewardRecord[]
+  violationRecords ViolationRecord[]
 }
 
 model Password {
-  id       String @id @unique
+  id       Int    @id @default(autoincrement())
   password String
 
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+
+  @@index([userId])
 }
 
 model StudentPassword {
-  id       String @id @unique
+  id       Int    @id @default(autoincrement())
   password String
 
-  Student Student @relation(fields: [id], references: [id], onDelete: Cascade)
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId String  @unique
+
+  @@index([studentId])
 }
 
 model Student {
   id             String  @id @default(uuid())
   fullName       String  @db.VarChar(75)
   identityNumber String  @db.VarChar(50)
+  dormitory      String?
+  address        String?
   avatar         String?
-  totalPoints    Int     @default(0) @db.SmallInt
+
+  violationPoints Int @default(0) @db.SmallInt
+  rewardPoints    Int @default(0) @db.SmallInt
+  totalPoints     Int @default(0) @db.SmallInt
 
   username String           @unique @db.VarChar(30)
   password StudentPassword?
   type     Role             @default(STUDENT)
 
-  RewardRecord    RewardRecord[]
-  ViolationRecord ViolationRecord[]
-  LeaveRecord     LeaveRecord[]
+  rewards    RewardRecord[]
+  violations ViolationRecord[]
+  leaves     LeaveRecord[]
 
   @@unique([fullName, identityNumber])
   @@index([fullName])
@@ -119,13 +130,34 @@ model ViolationRecord {
   @@index([violationId])
 }
 
+model ViolationCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(50)
+
+  violations Violation[]
+
+  @@index([name])
+}
+
 model Violation {
   id     Int           @id @default(autoincrement())
   name   String        @db.VarChar(255)
   type   ViolationType
   points Int           @db.SmallInt
 
-  ViolationRecord ViolationRecord[]
+  records ViolationRecord[]
+
+  category   ViolationCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int?
+
+  @@index([name])
+}
+
+model RewardCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(50)
+
+  rewards Reward[]
 
   @@index([name])
 }
@@ -135,7 +167,10 @@ model Reward {
   name   String @db.VarChar(255)
   points Int    @db.SmallInt
 
-  RewardRecord RewardRecord[]
+  records RewardRecord[]
+
+  category   RewardCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int?
 
   @@index([name])
 }
