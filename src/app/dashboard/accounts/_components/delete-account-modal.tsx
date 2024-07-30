@@ -46,7 +46,11 @@ export const DeleteAccountModal = ({
         </div>
       </Modal>
       <Tooltip label="Delete account">
-        <ActionIcon color="red" onClick={open}>
+        <ActionIcon
+          aria-label="Delete account button"
+          color="red"
+          onClick={open}
+        >
           <IconTrash size={16} />
         </ActionIcon>
       </Tooltip>

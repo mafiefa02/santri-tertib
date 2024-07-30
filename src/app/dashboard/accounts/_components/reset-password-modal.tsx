@@ -41,7 +41,7 @@ export const ResetPasswordModal = ({
         </div>
       </Modal>
       <Tooltip label="Reset password">
-        <ActionIcon onClick={open}>
+        <ActionIcon aria-label="Reset password button" onClick={open}>
           <IconKey size={16} />
         </ActionIcon>
       </Tooltip>
