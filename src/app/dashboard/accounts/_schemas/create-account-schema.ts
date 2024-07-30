@@ -6,9 +6,8 @@ export const createAccountSchema = z.object({
   username: z
     .string()
     .min(8, { message: 'Username needs to be atleast 8 characters long!' })
-    .transform((arg) => arg.trim())
-    .refine((arg) => !arg.split('').includes(' '), {
-      message: "Username can't contain spaces between words.",
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message: 'Only letters, numbers, and underscores are allowed.',
     }),
   password: z
     .string()
