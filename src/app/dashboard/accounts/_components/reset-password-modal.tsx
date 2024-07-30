@@ -29,7 +29,7 @@ export const ResetPasswordModal = ({
             <Button
               fullWidth
               disabled={isPending}
-              variant="outline"
+              variant="default"
               onClick={close}
             >
               Cancel

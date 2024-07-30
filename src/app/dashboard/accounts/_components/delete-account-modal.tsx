@@ -29,12 +29,17 @@ export const DeleteAccountModal = ({
             <Button
               fullWidth
               disabled={isPending}
-              variant="outline"
+              variant="default"
               onClick={close}
             >
               Cancel
             </Button>
-            <Button fullWidth loading={isPending} onClick={() => mutate()}>
+            <Button
+              fullWidth
+              className="bg-red-600 hover:bg-red-500"
+              loading={isPending}
+              onClick={() => mutate()}
+            >
               Delete
             </Button>
           </div>
