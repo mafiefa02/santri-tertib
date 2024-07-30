@@ -3,7 +3,7 @@ import React from 'react';
 
 import { findManyUncategorizedRewards } from '../_queries/find-many-uncategorized-rewards';
 
-export const UncategorizedRewardsList = async () => {
+export const UncategorizedRewardsListGroupedByCategory = async () => {
   const data = await findManyUncategorizedRewards();
 
   return (

@@ -4,16 +4,44 @@ import { Suspense } from 'react';
 import { TableRowLoading } from '@/components/table-loading';
 
 import { findManyRewardCategoriesWithRewards } from '../_queries/find-many-reward-categories-with-rewards';
+import { findManyRewards } from '../_queries/find-many-rewards';
 
-import { UncategorizedRewardsList } from './uncategorized-rewards-list';
+import { UncategorizedRewardsListGroupedByCategory } from './uncategorized-rewards-list-grouped-by-category';
 
-export const RewardsList = async () => {
-  const data = await findManyRewardCategoriesWithRewards();
+export const RewardsList = ({
+  group,
+  category,
+}: {
+  group?: 'rewards' | 'categories';
+  category?: string;
+}) => {
+  switch (group) {
+    case 'categories':
+      return <RewardsListGroupedByCategory category={category} />;
+    case 'rewards':
+      return <RewardsListGroupedByReward category={category} />;
+    default:
+      return <EmptyState />;
+  }
+};
 
-  if (data.length === 0) return <EmptyState />;
+const RewardsListGroupedByCategory = async ({
+  category,
+}: {
+  category?: string;
+}) => {
+  const data = await findManyRewardCategoriesWithRewards({ category });
+
+  if (!data.length && category && parseInt(category) !== 0)
+    return <EmptyState />;
 
   return (
     <TableTbody>
+      <Suspense fallback={<TableRowLoading columnCount={2} rowCount={5} />}>
+        {!category || parseInt(category) === 0 ? (
+          <UncategorizedRewardsListGroupedByCategory />
+        ) : null}
+      </Suspense>
       {data.map((row) => (
         <TableTr key={row.id}>
           <TableTd>{row.name}</TableTd>
@@ -31,18 +59,40 @@ export const RewardsList = async () => {
           </TableTd>
         </TableTr>
       ))}
-      <Suspense fallback={<TableRowLoading columnCount={2} rowCount={5} />}>
-        <UncategorizedRewardsList />
-      </Suspense>
     </TableTbody>
   );
 };
 
-const EmptyState = () => (
+const RewardsListGroupedByReward = async ({
+  category,
+}: {
+  category?: string;
+}) => {
+  const data = await findManyRewards({ category });
+
+  if (!data.length) return <EmptyState group="rewards" />;
+
+  return (
+    <TableTbody>
+      {data.map((row) => (
+        <TableTr key={row.id}>
+          <TableTd>{row.name}</TableTd>
+          <TableTd>{row.points}</TableTd>
+          <TableTd>
+            {row.category ? row.category.name : 'Tanpa kategori'}
+          </TableTd>
+        </TableTr>
+      ))}
+    </TableTbody>
+  );
+};
+
+const EmptyState = ({ group }: { group?: 'rewards' | 'categories' }) => (
   <TableTbody>
     <TableTr>
       <TableTd>-</TableTd>
       <TableTd>-</TableTd>
+      {group === 'rewards' && <TableTd>-</TableTd>}
     </TableTr>
   </TableTbody>
 );

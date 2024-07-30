@@ -4,8 +4,16 @@ import { cache } from 'react';
 
 import prisma from '@/config/db';
 
-export const findManyRewardCategoriesWithRewards = cache(async () =>
-  prisma.rewardCategory.findMany({
-    include: { rewards: true },
-  }),
+export interface FindManyRewardCategoriesWithRewardsParam {
+  category?: string;
+}
+
+export const findManyRewardCategoriesWithRewards = cache(
+  async ({ category }: FindManyRewardCategoriesWithRewardsParam) =>
+    prisma.rewardCategory.findMany({
+      include: { rewards: true },
+      where: {
+        id: category ? parseInt(category) : undefined,
+      },
+    }),
 );
