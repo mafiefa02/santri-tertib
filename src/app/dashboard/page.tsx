@@ -8,7 +8,7 @@ import {
 } from '@mantine/core';
 import { Suspense } from 'react';
 
-import { TableBodyLoading } from '@/components/table-body-loading';
+import { TableBodyLoading } from '@/components/table-loading';
 import prisma from '@/config/db';
 
 import { LastLogin } from './_components/last-login';

@@ -8,7 +8,7 @@ import {
 } from '@mantine/core';
 import React, { Suspense } from 'react';
 
-import { TableBodyLoading } from '@/components/table-body-loading';
+import { TableBodyLoading } from '@/components/table-loading';
 
 import { RewardsList } from './_components/rewards-list';
 
@@ -16,9 +16,9 @@ export const revalidate = 3600; // revalidate every 1 hour
 
 const DashboardRewardsPage = () => {
   return (
-    <TableScrollContainer minWidth={768}>
+    <TableScrollContainer minWidth={720}>
       <Paper withBorder>
-        <Table highlightOnHover stickyHeader>
+        <Table highlightOnHover stickyHeader withColumnBorders>
           <TableThead>
             <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
               {columns.map((column) => (
@@ -37,6 +37,6 @@ const DashboardRewardsPage = () => {
   );
 };
 
-const columns = ['Reward Name', 'Points'];
+const columns = ['Category', 'Reward(s)'];
 
 export default DashboardRewardsPage;

@@ -22,3 +22,21 @@ export const TableBodyLoading = ({
     </TableTbody>
   );
 };
+
+export const TableRowLoading = ({
+  columnCount,
+  rowCount = 10,
+}: {
+  columnCount: number;
+  rowCount?: number;
+}) => {
+  return Array.from({ length: rowCount }, (_, index) => (
+    <TableTr key={`${index}row`}>
+      {Array.from({ length: columnCount }, (_, index) => (
+        <TableTd key={`${index}cell`}>
+          <Skeleton className="h-5 w-full" />
+        </TableTd>
+      ))}
+    </TableTr>
+  ));
+};

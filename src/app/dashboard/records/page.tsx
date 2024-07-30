@@ -8,7 +8,7 @@ import {
 } from '@mantine/core';
 import React, { Suspense } from 'react';
 
-import { TableBodyLoading } from '@/components/table-body-loading';
+import { TableBodyLoading } from '@/components/table-loading';
 
 import { RewardRecords } from './_components/reward-records';
 import { ViolationRecords } from './_components/violation-records';

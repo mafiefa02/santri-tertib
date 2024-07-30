@@ -9,7 +9,7 @@ import {
 import type { $Enums } from '@prisma/client';
 import React, { Suspense } from 'react';
 
-import { TableBodyLoading } from '@/components/table-body-loading';
+import { TableBodyLoading } from '@/components/table-loading';
 
 import { AccountSearch } from './_components/account-search';
 import { AccountTypeFilter } from './_components/account-type-filter';
