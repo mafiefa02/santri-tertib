@@ -12,6 +12,7 @@ export const findManyRewards = cache(
   async ({ category }: FindManyRewardsParam) => {
     return prisma.reward.findMany({
       include: { category: { select: { name: true } } },
+      orderBy: { categoryId: 'desc' },
       where: {
         categoryId: getCategoryId(category),
       },
