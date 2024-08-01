@@ -34,14 +34,16 @@ const RewardsListGroupedByCategory = async ({
           <TableTd>{row.name}</TableTd>
           <TableTd>
             <ol className="list-disc space-y-2 pl-4">
-              {row.rewards.map((reward) => (
-                <li key={reward.id}>
-                  {reward.name}{' '}
-                  <Badge size="sm" variant="default">
-                    {reward.points} points
-                  </Badge>
-                </li>
-              ))}
+              {row.rewards.length > 0
+                ? row.rewards.map((reward) => (
+                    <li key={reward.id}>
+                      {reward.name}{' '}
+                      <Badge size="sm" variant="default">
+                        {reward.points} points
+                      </Badge>
+                    </li>
+                  ))
+                : 'No rewards with this category'}
             </ol>
           </TableTd>
         </TableTr>

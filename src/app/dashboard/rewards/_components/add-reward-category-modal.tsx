@@ -1,33 +1,25 @@
 'use client';
 
-import {
-  ActionIcon,
-  Button,
-  Modal,
-  NumberInput,
-  TextInput,
-} from '@mantine/core';
+import { ActionIcon, Button, Modal, TextInput } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { IconPlus } from '@tabler/icons-react';
 import React from 'react';
 import { type z } from 'zod';
 
-import { RewardCategoriesSelect } from '@/components/reward-categories-select';
+import { useCreateRewardCategory } from '../_hooks/use-create-reward-category';
+import { createRewardCategorySchema } from '../_schemas/create-reward-category-schema';
 
-import { useCreateReward } from '../_hooks/use-create-reward';
-import { createRewardsSchema } from '../_schemas/create-rewards-schema';
-
-export const AddRewardsModal = () => {
+export const AddRewardCategoryModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <>
-      <Modal opened={opened} title="Create new reward" onClose={close}>
+      <Modal opened={opened} title="Create new reward category" onClose={close}>
         <ModalContent close={close} />
       </Modal>
       <ActionIcon
-        aria-label="Create new reward button"
+        aria-label="Create new reward category button"
         className="bg-mtn-primary-filled text-white"
         size="input-sm"
         variant="filled"
@@ -40,15 +32,10 @@ export const AddRewardsModal = () => {
 };
 
 const ModalContent = ({ close }: { close: () => void }) => {
-  const { mutate, isPending } = useCreateReward(close);
-  const form = useForm<z.infer<typeof createRewardsSchema>>({
+  const { mutate, isPending } = useCreateRewardCategory(close);
+  const form = useForm<z.infer<typeof createRewardCategorySchema>>({
     mode: 'uncontrolled',
-    initialValues: {
-      name: '',
-      points: 0,
-      categoryId: '0',
-    },
-    validate: zodResolver(createRewardsSchema),
+    validate: zodResolver(createRewardCategorySchema),
     validateInputOnBlur: true,
   });
 
@@ -61,23 +48,8 @@ const ModalContent = ({ close }: { close: () => void }) => {
         key={form.key('name')}
         withAsterisk
         label="Name"
-        placeholder="Enter reward's name"
+        placeholder="Enter category name"
         {...form.getInputProps('name')}
-      />
-      <RewardCategoriesSelect
-        key={form.key('categoryId')}
-        withAsterisk
-        label="Category"
-        placeholder="Select reward's category"
-        {...form.getInputProps('categoryId')}
-      />
-      <NumberInput
-        key={form.key('points')}
-        withAsterisk
-        label="Points"
-        min={0}
-        placeholder="Enter reward's point"
-        {...form.getInputProps('points')}
       />
       <div className="flex items-center gap-2 w-full">
         <Button
