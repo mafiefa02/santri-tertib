@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  ActionIcon,
-  Button,
-  Modal,
-  Select,
-  TextInput,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Button, Modal, TextInput, Tooltip } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { $Enums } from '@prisma/client';
@@ -15,7 +8,7 @@ import { IconClipboard, IconPlus } from '@tabler/icons-react';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 
-import { getAccountTypeSelectOptions } from '@/utils/get-account-type-select-options';
+import { AccountTypeSelect } from '@/components/account-type-select';
 import { randomString } from '@/utils/random-string';
 
 import { useCreateAccount } from '../_hooks/use-create-account';
@@ -100,10 +93,9 @@ const ModalContent = ({ close }: { close: () => void }) => {
         {...form.getInputProps('displayName')}
       />
 
-      <Select
+      <AccountTypeSelect
         key={form.key('type')}
         withAsterisk
-        data={getAccountTypeSelectOptions()}
         label="Account's role"
         placeholder="Select account's role"
         {...form.getInputProps('type')}
