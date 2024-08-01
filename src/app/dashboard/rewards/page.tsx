@@ -10,9 +10,11 @@ import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-loading';
 
+import { AddRewardsModal } from './_components/add-rewards-modal';
 import { FilterRewards } from './_components/filter-rewards';
 import { GroupBySegment } from './_components/group-by-segment';
 import { RewardsList } from './_components/rewards-list';
+import { getRewardsTableColumns } from './_utils/get-rewards-table-columns';
 
 export const revalidate = 3600; // revalidate every 1 hour
 
@@ -27,10 +29,7 @@ const DashboardRewardsPage = ({
   searchParams: SearchParams;
 }) => {
   const { category, group = 'categories' } = searchParams;
-  const columns =
-    group === 'rewards'
-      ? ['Reward', 'Points', 'Category']
-      : ['Category', 'Reward(s)'];
+  const columns = getRewardsTableColumns(group);
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -38,9 +37,14 @@ const DashboardRewardsPage = ({
         <Suspense>
           <GroupBySegment group={group} />
         </Suspense>
-        <Suspense>
-          <FilterRewards category={category} />
-        </Suspense>
+        <div className="flex w-full items-center justify-between gap-2 md:max-w-fit">
+          <Suspense>
+            <FilterRewards category={category} />
+          </Suspense>
+          <Suspense>
+            <AddRewardsModal />
+          </Suspense>
+        </div>
       </div>
       <TableScrollContainer minWidth={420}>
         <Paper withBorder>

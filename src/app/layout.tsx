@@ -24,8 +24,8 @@ const RootLayout = ({
       <body className={cn('scroll-smooth antialiased', primary.className)}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
           <QueryProvider>
-              {children}
-              <Toaster closeButton richColors theme="system" />
+            {children}
+            <Toaster closeButton richColors theme="system" />
           </QueryProvider>
         </MantineProvider>
       </body>

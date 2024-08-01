@@ -1,12 +1,7 @@
 import { Badge, TableTbody, TableTd, TableTr } from '@mantine/core';
-import { Suspense } from 'react';
-
-import { TableRowLoading } from '@/components/table-loading';
 
 import { findManyRewardCategoriesWithRewards } from '../_queries/find-many-reward-categories-with-rewards';
 import { findManyRewards } from '../_queries/find-many-rewards';
-
-import { UncategorizedRewardsListGroupedByCategory } from './uncategorized-rewards-list-grouped-by-category';
 
 export const RewardsList = ({
   group,
@@ -15,14 +10,12 @@ export const RewardsList = ({
   group?: 'rewards' | 'categories';
   category?: string;
 }) => {
-  switch (group) {
-    case 'categories':
-      return <RewardsListGroupedByCategory category={category} />;
-    case 'rewards':
-      return <RewardsListGroupedByReward category={category} />;
-    default:
-      return <EmptyState />;
-  }
+  if (group === 'categories')
+    return <RewardsListGroupedByCategory category={category} />;
+  if (group === 'rewards')
+    return <RewardsListGroupedByReward category={category} />;
+
+  return <EmptyState />;
 };
 
 const RewardsListGroupedByCategory = async ({
@@ -32,16 +25,10 @@ const RewardsListGroupedByCategory = async ({
 }) => {
   const data = await findManyRewardCategoriesWithRewards({ category });
 
-  if (!data.length && category && parseInt(category) !== 0)
-    return <EmptyState />;
+  if (!data.length) return <EmptyState group="categories" />;
 
   return (
     <TableTbody>
-      <Suspense fallback={<TableRowLoading columnCount={2} rowCount={5} />}>
-        {!category || parseInt(category) === 0 ? (
-          <UncategorizedRewardsListGroupedByCategory />
-        ) : null}
-      </Suspense>
       {data.map((row) => (
         <TableTr key={row.id}>
           <TableTd>{row.name}</TableTd>

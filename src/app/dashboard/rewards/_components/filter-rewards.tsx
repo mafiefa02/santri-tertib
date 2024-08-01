@@ -11,10 +11,10 @@ export const FilterRewards = ({ category }: { category?: string }) => {
   const { data: categories, isFetched } = useFindManyRewardCategories();
   const { updateQuery } = useQueryString();
 
-  if (!isFetched) return <Skeleton className="h-9 w-full md:max-w-52" />;
+  if (!isFetched) return <Skeleton className="h-9 w-full md:w-56" />;
 
   const data = categories
-    ? [{ id: 0, name: 'Tanpa kategori' }, ...categories].map((category) => ({
+    ? categories.map((category) => ({
         value: category.id.toString(),
         label: category.name,
       }))
@@ -22,7 +22,7 @@ export const FilterRewards = ({ category }: { category?: string }) => {
 
   return (
     <Select
-      className="w-full md:max-w-fit"
+      className="w-full md:max-w-56"
       data={data}
       defaultValue={category}
       placeholder="Select category"

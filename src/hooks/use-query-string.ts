@@ -16,20 +16,16 @@ export const useQueryString = () => {
   const createQueryString = useCallback(
     ({ name, value }: QueryParam) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (!value) {
-        params.delete(name);
-      } else {
-        params.set(name, value);
-      }
+      value ? params.set(name, value) : params.delete(name);
 
       return params.toString();
     },
     [searchParams],
   );
 
-  const updateQuery = ({ name, value }: QueryParam) => {
+  const resetQuery = () => router.push(pathname);
+  const updateQuery = ({ name, value }: QueryParam) =>
     router.push(`${pathname}?${createQueryString({ name, value })}`);
-  };
 
-  return { createQueryString, updateQuery };
+  return { resetQuery, updateQuery };
 };
