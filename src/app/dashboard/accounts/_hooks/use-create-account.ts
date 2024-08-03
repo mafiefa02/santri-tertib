@@ -7,7 +7,7 @@ import type { z } from 'zod';
 import { createAccountAction } from '../_actions/create-account-action';
 import type { createAccountSchema } from '../_schemas/create-account-schema';
 
-export const useCreateAccount = (closeModal: () => void) => {
+export const useCreateAccount = (props?: { onSuccess: () => void }) => {
   return useMutation({
     mutationKey: ['create-account'],
     mutationFn: (value: z.infer<typeof createAccountSchema>) =>
@@ -17,7 +17,7 @@ export const useCreateAccount = (closeModal: () => void) => {
     },
     onSuccess: () => {
       toast.success('Successfully created a new account!');
-      closeModal();
+      props ? props.onSuccess() : null;
     },
   });
 };

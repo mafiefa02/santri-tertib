@@ -6,6 +6,7 @@ import {
   TableThead,
   TableTr,
 } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import type { $Enums } from '@prisma/client';
 import React, { Suspense } from 'react';
 
@@ -31,37 +32,39 @@ const AccountsDashboardPage = ({
   const { type, search } = searchParams;
 
   return (
-    <div className="flex w-full flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <Suspense>
-          <AccountSearch search={search} />
-        </Suspense>
-        <div className="flex w-full items-center gap-2 md:max-w-max">
+    <ModalsProvider>
+      <div className="flex w-full flex-col gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <Suspense>
-            <AccountTypeFilter type={type} />
+            <AccountSearch search={search} />
           </Suspense>
-          <AddAccountModal />
-        </div>
-      </div>
-      <TableScrollContainer minWidth={480}>
-        <Paper withBorder>
-          <Table highlightOnHover stickyHeader>
-            <TableThead>
-              <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
-                {columns.map((column) => (
-                  <TableTh key={`${column}column`}>{column}</TableTh>
-                ))}
-              </TableTr>
-            </TableThead>
-            <Suspense
-              fallback={<TableBodyLoading columnCount={columns.length} />}
-            >
-              <AccountsRegistered search={search} type={type} />
+          <div className="flex w-full items-center gap-2 md:max-w-max">
+            <Suspense>
+              <AccountTypeFilter type={type} />
             </Suspense>
-          </Table>
-        </Paper>
-      </TableScrollContainer>
-    </div>
+            <AddAccountModal />
+          </div>
+        </div>
+        <TableScrollContainer minWidth={480}>
+          <Paper withBorder>
+            <Table highlightOnHover stickyHeader>
+              <TableThead>
+                <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
+                  {columns.map((column) => (
+                    <TableTh key={`${column}column`}>{column}</TableTh>
+                  ))}
+                </TableTr>
+              </TableThead>
+              <Suspense
+                fallback={<TableBodyLoading columnCount={columns.length} />}
+              >
+                <AccountsRegistered search={search} type={type} />
+              </Suspense>
+            </Table>
+          </Paper>
+        </TableScrollContainer>
+      </div>
+    </ModalsProvider>
   );
 };
 

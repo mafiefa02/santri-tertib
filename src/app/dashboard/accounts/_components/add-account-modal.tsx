@@ -1,8 +1,8 @@
 'use client';
 
-import { ActionIcon, Button, Modal, TextInput, Tooltip } from '@mantine/core';
+import { ActionIcon, Button, TextInput, Tooltip } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { useDisclosure } from '@mantine/hooks';
+import { modals, openModal } from '@mantine/modals';
 import { $Enums } from '@prisma/client';
 import { IconClipboard, IconPlus } from '@tabler/icons-react';
 import { toast } from 'sonner';
@@ -14,29 +14,33 @@ import { randomString } from '@/utils/random-string';
 import { useCreateAccount } from '../_hooks/use-create-account';
 import { createAccountSchema } from '../_schemas/create-account-schema';
 
-export const AddAccountModal = () => {
-  const [opened, { open, close }] = useDisclosure(false);
+const MODAL_ID = 'create-new-account';
 
+export const AddAccountModal = () => {
   return (
-    <>
-      <Modal opened={opened} title="Create a new account" onClose={close}>
-        <ModalContent close={close} />
-      </Modal>
-      <ActionIcon
-        aria-label="Add account button"
-        className="bg-mtn-primary-filled text-white"
-        size="input-sm"
-        variant="filled"
-        onClick={open}
-      >
-        <IconPlus size={16} />
-      </ActionIcon>
-    </>
+    <ActionIcon
+      aria-label="Add account button"
+      className="bg-mtn-primary-filled text-white"
+      size="input-sm"
+      variant="filled"
+      onClick={() =>
+        openModal({
+          modalId: MODAL_ID,
+          title: 'Create a new account',
+          children: <ModalContent />,
+        })
+      }
+    >
+      <IconPlus size={16} />
+    </ActionIcon>
   );
 };
 
-const ModalContent = ({ close }: { close: () => void }) => {
-  const { mutate, isPending } = useCreateAccount(close);
+const ModalContent = () => {
+  const { mutate, isPending } = useCreateAccount({
+    onSuccess: () => modals.close(MODAL_ID),
+  });
+
   const form = useForm<z.infer<typeof createAccountSchema>>({
     mode: 'uncontrolled',
     initialValues: {
@@ -107,7 +111,7 @@ const ModalContent = ({ close }: { close: () => void }) => {
           disabled={isPending}
           type="button"
           variant="default"
-          onClick={close}
+          onClick={() => modals.close(MODAL_ID)}
         >
           Cancel
         </Button>

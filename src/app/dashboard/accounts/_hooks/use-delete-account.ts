@@ -6,16 +6,19 @@ import { toast } from 'sonner';
 
 import { deleteAccountAction } from '../_actions/delete-account-action';
 
-export const useDeleteAccount = (id: User['id'], close: () => void) => {
+export const useDeleteAccount = (props: {
+  id: User['id'];
+  onSuccess?: () => void;
+}) => {
   return useMutation({
     mutationKey: ['delete-account'],
-    mutationFn: () => deleteAccountAction(id),
+    mutationFn: () => deleteAccountAction(props.id),
     onError: (error) => {
       toast.error(error.message);
     },
     onSuccess: () => {
       toast.success(`Account deleted successfully!`);
-      close();
+      props.onSuccess ? props.onSuccess() : null;
     },
   });
 };
