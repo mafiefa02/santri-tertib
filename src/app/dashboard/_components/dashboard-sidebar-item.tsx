@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import type { $Enums } from '@prisma/client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -16,35 +17,20 @@ interface MenuItem {
 export const DashboardSidebarItem = ({ menu }: { menu: MenuItem }) => {
   const pathname = usePathname();
   const isActive = pathname.endsWith(menu.href);
+  const isDesktopLarge = useMediaQuery('(min-width: 75em)');
+
   return (
-    <>
-      <Button
-        key={`${menu.href}mobile-dashboard-sidebar`}
-        aria-label={`Navigation dashboard ${menu.label}`}
-        className="shrink-0"
-        classNames={{ root: 'mtn-lg:hidden' }}
-        component={Link}
-        href={menu.href}
-        justify="center"
-        size="compact-xl"
-        variant={isActive ? 'light' : 'subtle'}
-      >
-        {menu.icon}
-      </Button>
-      <Button
-        key={`${menu.href}desktop-dashboard-sidebar`}
-        aria-label={`Navigation dashboard ${menu.label}`}
-        className="min-w-52 shrink-0 mtn-lg:block"
-        classNames={{ root: 'hidden mtn-lg:block' }}
-        component={Link}
-        href={menu.href}
-        justify="left"
-        leftSection={menu.icon}
-        size="sm"
-        variant={isActive ? 'light' : 'subtle'}
-      >
-        {menu.label}
-      </Button>
-    </>
+    <Button
+      aria-label={`Navigate to ${menu.label}`}
+      className="shrink-0 mtn-lg:min-w-52"
+      component={Link}
+      href={menu.href}
+      justify={isDesktopLarge ? 'left' : 'center'}
+      leftSection={isDesktopLarge ? menu.icon : undefined}
+      size={isDesktopLarge ? 'sm' : 'compact-xl'}
+      variant={isActive ? 'light' : 'subtle'}
+    >
+      {isDesktopLarge ? menu.label : menu.icon}
+    </Button>
   );
 };

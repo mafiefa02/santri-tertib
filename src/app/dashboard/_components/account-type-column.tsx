@@ -3,12 +3,17 @@ import type { $Enums } from '@prisma/client';
 import React from 'react';
 
 export const AccountTypeBadge = ({ type }: { type: $Enums.Role }) => {
+  const variant = getBadgeVariant(type);
+  return <Badge variant={variant}>{type}</Badge>;
+};
+
+const getBadgeVariant = (type: $Enums.Role) => {
   switch (type) {
     case 'ADMIN':
-      return <Badge variant="filled">{type}</Badge>;
+      return 'filled';
     case 'STAFF':
-      return <Badge variant="light">{type}</Badge>;
+      return 'light';
     case 'STUDENT':
-      return <Badge variant="outline">{type}</Badge>;
+      return 'outline';
   }
 };
