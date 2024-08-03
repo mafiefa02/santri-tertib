@@ -10,8 +10,7 @@ import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-loading';
 
-import { AddRewardCategoryModal } from './_components/add-reward-category-modal';
-import { AddRewardsModal } from './_components/add-rewards-modal';
+import { AddRewardOrCategory } from './_components/add-reward-or-category';
 import { FilterRewards } from './_components/filter-rewards';
 import { GroupBySegment } from './_components/group-by-segment';
 import { RewardsList } from './_components/rewards-list';
@@ -43,11 +42,7 @@ const DashboardRewardsPage = ({
             <FilterRewards category={category} />
           </Suspense>
           <Suspense>
-            {group === 'rewards' ? (
-              <AddRewardsModal />
-            ) : (
-              <AddRewardCategoryModal />
-            )}
+            <AddRewardOrCategory />
           </Suspense>
         </div>
       </div>

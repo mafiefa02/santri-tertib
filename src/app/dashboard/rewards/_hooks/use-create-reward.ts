@@ -7,7 +7,7 @@ import { type z } from 'zod';
 import { createRewardAction } from '../_actions/create-reward-action';
 import { type createRewardsSchema } from '../_schemas/create-rewards-schema';
 
-export const useCreateReward = (closeModal: () => void) => {
+export const useCreateReward = (props?: { onSuccess: () => void }) => {
   return useMutation({
     mutationKey: ['create-reward'],
     mutationFn: (data: z.infer<typeof createRewardsSchema>) =>
@@ -15,7 +15,7 @@ export const useCreateReward = (closeModal: () => void) => {
     onError: (error) => toast.error(error.message),
     onSuccess: () => {
       toast.success('Successfully created a new reward!');
-      closeModal();
+      props ? props.onSuccess() : null;
     },
   });
 };

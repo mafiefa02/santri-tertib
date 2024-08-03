@@ -1,15 +1,9 @@
 'use client';
 
-import {
-  ActionIcon,
-  Button,
-  Modal,
-  NumberInput,
-  TextInput,
-} from '@mantine/core';
+import { Button, MenuItem, NumberInput, TextInput } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { useDisclosure } from '@mantine/hooks';
-import { IconPlus } from '@tabler/icons-react';
+import { closeModal, modals } from '@mantine/modals';
+import { IconTrophy } from '@tabler/icons-react';
 import React from 'react';
 import { type z } from 'zod';
 
@@ -18,29 +12,30 @@ import { RewardCategoriesSelect } from '@/components/reward-categories-select';
 import { useCreateReward } from '../_hooks/use-create-reward';
 import { createRewardsSchema } from '../_schemas/create-rewards-schema';
 
-export const AddRewardsModal = () => {
-  const [opened, { open, close }] = useDisclosure(false);
+const MODAL_ID = 'create-new-reward';
 
+export const AddRewardsModal = () => {
   return (
-    <>
-      <Modal opened={opened} title="Create new reward" onClose={close}>
-        <ModalContent close={close} />
-      </Modal>
-      <ActionIcon
-        aria-label="Create new reward button"
-        className="bg-mtn-primary-filled text-white"
-        size="input-sm"
-        variant="filled"
-        onClick={open}
-      >
-        <IconPlus size={16} />
-      </ActionIcon>
-    </>
+    <MenuItem
+      leftSection={<IconTrophy size={16} />}
+      onClick={() =>
+        modals.open({
+          modalId: MODAL_ID,
+          title: 'Create new reward',
+          children: <ModalContent />,
+        })
+      }
+    >
+      Create new reward
+    </MenuItem>
   );
 };
 
-const ModalContent = ({ close }: { close: () => void }) => {
-  const { mutate, isPending } = useCreateReward(close);
+const ModalContent = () => {
+  const { mutate, isPending } = useCreateReward({
+    onSuccess: () => closeModal(MODAL_ID),
+  });
+
   const form = useForm<z.infer<typeof createRewardsSchema>>({
     mode: 'uncontrolled',
     initialValues: {
@@ -84,7 +79,7 @@ const ModalContent = ({ close }: { close: () => void }) => {
           fullWidth
           disabled={isPending}
           variant="default"
-          onClick={close}
+          onClick={() => modals.close(MODAL_ID)}
         >
           Cancel
         </Button>
