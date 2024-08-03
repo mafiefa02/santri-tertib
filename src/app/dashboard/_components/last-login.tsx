@@ -3,7 +3,7 @@ import React from 'react';
 
 import prisma from '@/config/db';
 
-import { AccountTypeBadge } from './account-type-column';
+import { AccountTypeBadge } from './account-type-badge';
 import { LastLoginTime } from './last-login-time';
 
 export const LastLogin = async () => {

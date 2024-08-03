@@ -2,7 +2,7 @@ import { ActionIconGroup, TableTbody, TableTd, TableTr } from '@mantine/core';
 
 import { auth } from '@/config/auth';
 
-import { AccountTypeBadge } from '../../_components/account-type-column';
+import { AccountTypeBadge } from '../../_components/account-type-badge';
 import {
   type FindManyUserParam,
   findManyUser,

@@ -4,7 +4,11 @@ import React from 'react';
 
 export const AccountTypeBadge = ({ type }: { type: $Enums.Role }) => {
   const variant = getBadgeVariant(type);
-  return <Badge variant={variant}>{type}</Badge>;
+  return (
+    <Badge size="sm" variant={variant}>
+      {type}
+    </Badge>
+  );
 };
 
 const getBadgeVariant = (type: $Enums.Role) => {

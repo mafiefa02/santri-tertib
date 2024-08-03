@@ -147,8 +147,8 @@ model Violation {
 
   records ViolationRecord[]
 
-  category   ViolationCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  categoryId Int?
+  category   ViolationCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int
 
   @@index([name])
 }
@@ -169,8 +169,8 @@ model Reward {
 
   records RewardRecord[]
 
-  category   RewardCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  categoryId Int?
+  category   RewardCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int
 
   @@index([name])
 }

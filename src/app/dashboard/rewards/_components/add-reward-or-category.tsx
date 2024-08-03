@@ -26,9 +26,9 @@ export const AddRewardOrCategory = () => {
         </MenuTarget>
         <MenuDropdown>
           <MenuLabel>Reward</MenuLabel>
-          <AddRewardCategoryModal />
-          <MenuLabel>Categories</MenuLabel>
           <AddRewardsModal />
+          <MenuLabel>Categories</MenuLabel>
+          <AddRewardCategoryModal />
         </MenuDropdown>
       </Menu>
     </ModalsProvider>

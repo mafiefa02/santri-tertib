@@ -2,20 +2,23 @@ import { Badge, TableTbody, TableTd, TableTr } from '@mantine/core';
 
 import { findManyRewardCategoriesWithRewards } from '../_queries/find-many-reward-categories-with-rewards';
 import { findManyRewards } from '../_queries/find-many-rewards';
+import { getRewardsTableColumns } from '../_utils/get-rewards-table-columns';
 
 export const RewardsList = ({
-  group,
+  group = 'categories',
   category,
 }: {
   group?: 'rewards' | 'categories';
   category?: string;
 }) => {
-  if (group === 'categories')
-    return <RewardsListGroupedByCategory category={category} />;
-  if (group === 'rewards')
-    return <RewardsListGroupedByReward category={category} />;
-
-  return <EmptyState />;
+  switch (group) {
+    case 'categories':
+      return <RewardsListGroupedByCategory category={category} />;
+    case 'rewards':
+      return <RewardsListGroupedByReward category={category} />;
+    default:
+      return <EmptyState />;
+  }
 };
 
 const RewardsListGroupedByCategory = async ({
@@ -36,7 +39,7 @@ const RewardsListGroupedByCategory = async ({
             <ol className="list-disc space-y-2 pl-4">
               {row.rewards.length > 0
                 ? row.rewards.map((reward) => (
-                    <li key={reward.id}>
+                    <li key={reward.id} className="max-w-[80ch] text-pretty">
                       {reward.name}{' '}
                       <Badge size="sm" variant="default">
                         {reward.points} points
@@ -65,23 +68,28 @@ const RewardsListGroupedByReward = async ({
     <TableTbody>
       {data.map((row) => (
         <TableTr key={row.id}>
-          <TableTd>{row.name}</TableTd>
+          <TableTd className="max-w-[80ch] text-pretty">{row.name}</TableTd>
           <TableTd>{row.points}</TableTd>
-          <TableTd>
-            {row.category ? row.category.name : 'Tanpa kategori'}
-          </TableTd>
+          <TableTd>{row.category.name}</TableTd>
         </TableTr>
       ))}
     </TableTbody>
   );
 };
 
-const EmptyState = ({ group }: { group?: 'rewards' | 'categories' }) => (
-  <TableTbody>
-    <TableTr>
-      <TableTd>-</TableTd>
-      <TableTd>-</TableTd>
-      {group === 'rewards' && <TableTd>-</TableTd>}
-    </TableTr>
-  </TableTbody>
-);
+const EmptyState = ({
+  group = 'categories',
+}: {
+  group?: 'rewards' | 'categories';
+}) => {
+  const columns = getRewardsTableColumns(group);
+  return (
+    <TableTbody>
+      <TableTr>
+        {Array.from({ length: columns.length }, (_, index) => (
+          <TableTd key={index}>-</TableTd>
+        ))}
+      </TableTr>
+    </TableTbody>
+  );
+};
