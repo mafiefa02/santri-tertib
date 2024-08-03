@@ -55,6 +55,7 @@ export const NavigationBar = async () => {
                   aria-label="Account action button"
                   className="hover:cursor-pointer"
                   color="blue"
+                  name={session.user.username}
                   role="button"
                   src={session.user.avatar ?? undefined}
                 />

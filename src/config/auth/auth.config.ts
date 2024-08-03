@@ -28,7 +28,7 @@ export default {
   secret: env.AUTH_SECRET,
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24 * 5, // 5 days
+    maxAge: 60 * 60 * 24 * 3, // 3 days
   },
   providers: [],
   pages: {
