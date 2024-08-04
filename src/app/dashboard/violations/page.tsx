@@ -50,7 +50,7 @@ const DashboardViolationsPage = ({
       </div>
       <TableScrollContainer minWidth={520}>
         <Paper withBorder>
-          <Table highlightOnHover stickyHeader>
+          <Table highlightOnHover stickyHeader withColumnBorders>
             <TableThead>
               <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
                 {columns.map((column) => (
