@@ -10,10 +10,13 @@ import {
 } from '@mantine/core';
 import { type $Enums } from '@prisma/client';
 import { IconCategory2, IconFilterPlus, IconFlag } from '@tabler/icons-react';
+import { Suspense } from 'react';
 
 import { ViolationCategoriesSelect } from '@/components/violation-categories-select';
 import { ViolationTypeSelect } from '@/components/violation-type-select';
 import { useQueryString } from '@/hooks/use-query-string';
+
+import { ActiveFiltersBadge } from './active-filters-badge';
 
 export const FilterViolations = ({
   category,
@@ -32,6 +35,11 @@ export const FilterViolations = ({
           justify="left"
           leftSection={<IconFilterPlus size={16} />}
           variant="default"
+          rightSection={
+            <Suspense>
+              <ActiveFiltersBadge />
+            </Suspense>
+          }
         >
           Filters
         </Button>
