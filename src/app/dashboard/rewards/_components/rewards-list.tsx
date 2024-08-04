@@ -78,7 +78,9 @@ const RewardsListGroupedByReward = async ({
         <TableTr key={row.id}>
           <TableTd className="max-w-[80ch] text-pretty">{row.name}</TableTd>
           <TableTd>{row.points}</TableTd>
-          <TableTd>{row.category.name}</TableTd>
+          <TableTd>
+            {row.category ? row.category.name : 'No category data found'}
+          </TableTd>
         </TableTr>
       ))}
     </TableTbody>

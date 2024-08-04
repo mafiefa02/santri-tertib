@@ -11,6 +11,7 @@ import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-loading';
 
+import { AddViolationOrCategory } from './_components/add-violation-or-category';
 import { FilterViolations } from './_components/filter-violations';
 import { SegmentGroupBy } from './_components/segment-group-by';
 import { ViolationsList } from './_components/violations-list';
@@ -42,8 +43,9 @@ const DashboardViolationsPage = ({
           <Suspense>
             <FilterViolations category={category} type={type} />
           </Suspense>
-          {/* TODO: add new data functionality */}
-          <Suspense>{/* <AddRewardOrCategory /> */}</Suspense>
+          <Suspense>
+            <AddViolationOrCategory />
+          </Suspense>
         </div>
       </div>
       <TableScrollContainer minWidth={520}>

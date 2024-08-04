@@ -107,7 +107,7 @@ const ViolationsListGroupedByViolation = async ({
             <ViolationTypeBadge type={row.type} />
           </TableTd>
           <TableTd className="max-w-[80ch] text-pretty">
-            {row.category.name}
+            {row.category ? row.category.name : 'No category data found'}
           </TableTd>
         </TableTr>
       ))}
