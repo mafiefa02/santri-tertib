@@ -99,6 +99,7 @@ const ModalContent = () => {
 
       <AccountTypeSelect
         key={form.key('type')}
+        searchable
         withAsterisk
         label="Account's role"
         placeholder="Select account's role"
