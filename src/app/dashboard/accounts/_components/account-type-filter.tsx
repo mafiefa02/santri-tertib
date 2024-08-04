@@ -11,6 +11,7 @@ export const AccountTypeFilter = ({ type }: { type?: $Enums.Role }) => {
 
   return (
     <AccountTypeSelect
+      searchable
       className="w-full md:max-w-52"
       defaultValue={type}
       placeholder="Select account type"

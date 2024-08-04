@@ -1,11 +1,15 @@
-import { Badge } from '@mantine/core';
+import { Badge, type BadgeProps } from '@mantine/core';
 import type { $Enums } from '@prisma/client';
 import React from 'react';
 
-export const AccountTypeBadge = ({ type }: { type: $Enums.Role }) => {
+interface AccountTypeBadgeProps extends BadgeProps {
+  type: $Enums.Role;
+}
+
+export const AccountTypeBadge = ({ type, ...props }: AccountTypeBadgeProps) => {
   const variant = getBadgeVariant(type);
   return (
-    <Badge size="sm" variant={variant}>
+    <Badge size="sm" variant={variant} {...props}>
       {type}
     </Badge>
   );
@@ -19,5 +23,7 @@ const getBadgeVariant = (type: $Enums.Role) => {
       return 'light';
     case 'STUDENT':
       return 'outline';
+    default:
+      return undefined;
   }
 };

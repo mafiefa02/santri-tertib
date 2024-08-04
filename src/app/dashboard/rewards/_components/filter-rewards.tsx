@@ -10,6 +10,7 @@ export const FilterRewards = ({ category }: { category?: string }) => {
 
   return (
     <RewardCategoriesSelect
+      searchable
       className="w-full md:max-w-56"
       defaultValue={category}
       placeholder="Select category"

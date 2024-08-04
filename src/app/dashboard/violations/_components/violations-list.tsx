@@ -1,4 +1,12 @@
-import { Badge, Group, TableTbody, TableTd, TableTr } from '@mantine/core';
+import {
+  Badge,
+  Group,
+  List,
+  ListItem,
+  TableTbody,
+  TableTd,
+  TableTr,
+} from '@mantine/core';
 import { type $Enums } from '@prisma/client';
 
 import { ViolationTypeBadge } from '../../_components/violation-type-badge';
@@ -49,21 +57,28 @@ const ViolationsListGroupedByCategory = async ({
         <TableTr key={row.id}>
           <TableTd>{row.name}</TableTd>
           <TableTd>
-            <ol className="list-disc space-y-2 pl-4">
+            <List
+              className="max-w-[80ch] text-pretty"
+              listStyleType="disc"
+              size="sm"
+              spacing="xs"
+            >
               {row.violations.length > 0
                 ? row.violations.map((violation) => (
-                    <li key={violation.id} className="max-w-[80ch] text-pretty">
-                      {violation.name}{' '}
-                      <Group className="inline-flex" gap={2}>
-                        <Badge size="sm" variant="default">
-                          {violation.points} points
-                        </Badge>
-                        <ViolationTypeBadge type={violation.type} />
+                    <ListItem key={violation.id}>
+                      <Group gap={6}>
+                        {violation.name}
+                        <Group className="inline-flex" gap={2}>
+                          <Badge size="sm" variant="default">
+                            {violation.points} points
+                          </Badge>
+                          <ViolationTypeBadge size="sm" type={violation.type} />
+                        </Group>
                       </Group>
-                    </li>
+                    </ListItem>
                   ))
                 : 'No violations with this category'}
-            </ol>
+            </List>
           </TableTd>
         </TableTr>
       ))}

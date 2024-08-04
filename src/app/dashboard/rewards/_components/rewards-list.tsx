@@ -1,4 +1,11 @@
-import { Badge, TableTbody, TableTd, TableTr } from '@mantine/core';
+import {
+  Badge,
+  List,
+  ListItem,
+  TableTbody,
+  TableTd,
+  TableTr,
+} from '@mantine/core';
 
 import { findManyRewardCategoriesWithRewards } from '../_queries/find-many-reward-categories-with-rewards';
 import { findManyRewards } from '../_queries/find-many-rewards';
@@ -36,18 +43,19 @@ const RewardsListGroupedByCategory = async ({
         <TableTr key={row.id}>
           <TableTd>{row.name}</TableTd>
           <TableTd>
-            <ol className="list-disc space-y-2 pl-4">
+            <List listStyleType="disc" size="sm" spacing="xs">
               {row.rewards.length > 0
                 ? row.rewards.map((reward) => (
-                    <li key={reward.id} className="max-w-[80ch] text-pretty">
-                      {reward.name}{' '}
-                      <Badge size="sm" variant="default">
-                        {reward.points} points
-                      </Badge>
-                    </li>
+                    <ListItem
+                      key={reward.id}
+                      className="max-w-[80ch] text-pretty"
+                      icon={<Badge variant="dot">{reward.points} points</Badge>}
+                    >
+                      {reward.name}
+                    </ListItem>
                   ))
                 : 'No rewards with this category'}
-            </ol>
+            </List>
           </TableTd>
         </TableTr>
       ))}

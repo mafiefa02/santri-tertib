@@ -3,16 +3,23 @@ import { type $Enums } from '@prisma/client';
 
 import { formatToTitle } from '@/utils/format-to-title';
 
+interface ViolationTypeBadgeProps extends BadgeProps {
+  type: $Enums.ViolationType;
+}
+
 export const ViolationTypeBadge = ({
   type,
-}: {
-  type: $Enums.ViolationType;
-}) => {
+  ...props
+}: ViolationTypeBadgeProps) => {
   const variant = getBadgeVariant(type);
-  return <Badge variant={variant}>{formatToTitle(type)}</Badge>;
+  return (
+    <Badge variant={variant} {...props}>
+      {formatToTitle(type)}
+    </Badge>
+  );
 };
 
-const getBadgeVariant = (type: $Enums.ViolationType): BadgeProps['variant'] => {
+const getBadgeVariant = (type: $Enums.ViolationType) => {
   switch (type) {
     case 'HEAVY':
       return 'filled';
@@ -20,5 +27,7 @@ const getBadgeVariant = (type: $Enums.ViolationType): BadgeProps['variant'] => {
       return 'light';
     case 'MINOR':
       return 'default';
+    default:
+      return undefined;
   }
 };

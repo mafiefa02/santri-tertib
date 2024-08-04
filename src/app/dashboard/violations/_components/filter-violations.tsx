@@ -40,6 +40,7 @@ export const FilterViolations = ({
         <MenuItem>
           <ViolationTypeSelect
             className="w-full md:max-w-56"
+            comboboxProps={{ withinPortal: false }}
             defaultValue={type}
             leftSection={<IconFlag size={16} />}
             placeholder="Select type"
@@ -50,6 +51,7 @@ export const FilterViolations = ({
         <MenuItem>
           <ViolationCategoriesSelect
             className="w-full md:max-w-56"
+            comboboxProps={{ withinPortal: false }}
             defaultValue={category}
             leftSection={<IconCategory2 size={16} />}
             placeholder="Select category"
