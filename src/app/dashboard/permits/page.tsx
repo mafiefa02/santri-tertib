@@ -15,7 +15,7 @@ import { PermitRecords } from './_components/permit-records';
 const DashboardPermitsPage = () => {
   return (
     <TableScrollContainer minWidth={1440}>
-      <Paper withBorder>
+      <Paper withBorder className="overflow-hidden">
         <Table highlightOnHover stickyHeader>
           <TableThead>
             <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">

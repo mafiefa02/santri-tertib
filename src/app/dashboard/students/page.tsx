@@ -17,7 +17,7 @@ export const revalidate = 3600; // revalidate every 1 hour
 const DashboardStudent = () => {
   return (
     <TableScrollContainer minWidth={768}>
-      <Paper withBorder>
+      <Paper withBorder className="overflow-hidden">
         <Table highlightOnHover stickyHeader>
           <TableThead>
             <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">

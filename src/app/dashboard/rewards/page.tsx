@@ -47,7 +47,7 @@ const DashboardRewardsPage = ({
         </div>
       </div>
       <TableScrollContainer minWidth={420}>
-        <Paper withBorder>
+        <Paper withBorder className="overflow-hidden">
           <Table highlightOnHover stickyHeader withColumnBorders>
             <TableThead>
               <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">

@@ -23,7 +23,7 @@ const DashboardRecordsPage = ({
 
   return (
     <TableScrollContainer minWidth={768}>
-      <Paper withBorder>
+      <Paper withBorder className="overflow-hidden">
         <Table highlightOnHover stickyHeader>
           <TableThead>
             <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">

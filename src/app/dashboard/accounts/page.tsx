@@ -46,7 +46,7 @@ const AccountsDashboardPage = ({
           </div>
         </div>
         <TableScrollContainer minWidth={480}>
-          <Paper withBorder>
+          <Paper withBorder className="overflow-hidden">
             <Table highlightOnHover stickyHeader>
               <TableThead>
                 <TableTr className="text-mtn-primary-filled dark:text-mtn-primary-light-color">
