@@ -1,21 +1,19 @@
 'use client';
 
-import type { User } from '@prisma/client';
+import type { Student } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { resetPasswordAction } from '../_actions/reset-password-action';
+import { resetStudentPasswordAction } from '../_actions/reset-student-password-action';
 
-export const useResetPassword = (props: {
-  id: User['id'];
+export const useResetStudentPassword = (props: {
+  id: Student['id'];
   onSuccess?: () => void;
 }) => {
   return useMutation({
-    mutationKey: ['reset-password', { id: props.id }],
-    mutationFn: () => resetPasswordAction(props.id),
-    onError: (error) => {
-      toast.error(error.message);
-    },
+    mutationKey: ['reset-student-password', { id: props.id }],
+    mutationFn: () => resetStudentPasswordAction(props.id),
+    onError: (error) => toast.error(error.message),
     onSuccess: (newPassword) => {
       void navigator.clipboard.writeText(newPassword);
       toast.success(`Password reset successful!`);

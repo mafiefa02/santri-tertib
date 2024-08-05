@@ -5,19 +5,26 @@ import { cache } from 'react';
 import prisma from '@/config/db';
 
 interface QueryParams {
+  studentClass?: string;
   search?: string;
   dormitory?: string;
 }
 
 export const findManyStudents = cache(
-  async ({ search, dormitory }: QueryParams) =>
+  async ({ search, dormitory, studentClass }: QueryParams) =>
     prisma.student.findMany({
       where: {
-        OR: [
-          { fullName: { contains: search } },
-          { identityNumber: { startsWith: search } },
+        AND: [
+          {
+            OR: [
+              { fullName: { contains: search } },
+              { identityNumber: { startsWith: search } },
+              { username: { startsWith: search } },
+            ],
+          },
+          { dormitoryId: dormitory ? parseInt(dormitory) : undefined },
+          { classId: studentClass ? parseInt(studentClass) : undefined },
         ],
-        dormitory: { id: dormitory ? parseInt(dormitory) : undefined },
       },
       include: {
         dormitory: { select: { name: true } },

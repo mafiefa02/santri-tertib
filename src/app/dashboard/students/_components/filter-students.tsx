@@ -8,9 +8,14 @@ import {
   MenuLabel,
   MenuTarget,
 } from '@mantine/core';
-import { IconFilterPlus, IconHomeDot } from '@tabler/icons-react';
+import {
+  IconChalkboard,
+  IconFilterPlus,
+  IconHomeDot,
+} from '@tabler/icons-react';
 import { Suspense } from 'react';
 
+import { StudentClassSelect } from '@/components/student-class-select';
 import { StudentDormitorySelect } from '@/components/student-dormitory-select';
 import { useQueryString } from '@/hooks/use-query-string';
 
@@ -19,10 +24,9 @@ import { ActiveFiltersBadge } from './active-filters-badge';
 interface Filters {
   dormitory?: string;
   studentClass?: string;
-  group?: 'students' | 'dormitories' | 'class';
 }
 
-export const FilterStudents = ({ dormitory, studentClass, group }: Filters) => {
+export const FilterStudents = ({ dormitory, studentClass }: Filters) => {
   const { updateQuery } = useQueryString();
 
   return (
@@ -56,15 +60,14 @@ export const FilterStudents = ({ dormitory, studentClass, group }: Filters) => {
         </MenuItem>
         <MenuLabel>Class</MenuLabel>
         <MenuItem>
-          {/* <ViolationCategoriesSelect
-
-          className="w-full md:max-w-56"
-          comboboxProps={{ withinPortal: false }}
-          defaultValue={category}
-          leftSection={<IconCategory2 size={16} />}
-          placeholder="Select category"
-          onChange={(value) => updateQuery({ name: 'category', value })}
-        /> */}
+          <StudentClassSelect
+            className="w-full md:max-w-56"
+            comboboxProps={{ withinPortal: false }}
+            defaultValue={studentClass}
+            leftSection={<IconChalkboard size={16} />}
+            placeholder="Select class"
+            onChange={(value) => updateQuery({ name: 'studentClass', value })}
+          />
         </MenuItem>
       </MenuDropdown>
     </Menu>
