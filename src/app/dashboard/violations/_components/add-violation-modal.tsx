@@ -56,7 +56,6 @@ const ModalContent = () => {
       />
       <ViolationCategoriesSelect
         key={form.key('categoryId')}
-        searchable
         withAsterisk
         label="Category"
         placeholder="Select violation's category"
@@ -72,7 +71,6 @@ const ModalContent = () => {
       />
       <ViolationTypeSelect
         key={form.key('type')}
-        searchable
         withAsterisk
         label="Type"
         placeholder="Select violation's type"

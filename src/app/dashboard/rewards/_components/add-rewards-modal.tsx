@@ -61,7 +61,6 @@ const ModalContent = () => {
       />
       <RewardCategoriesSelect
         key={form.key('categoryId')}
-        searchable
         withAsterisk
         label="Category"
         placeholder="Select reward's category"

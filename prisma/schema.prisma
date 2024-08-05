@@ -67,9 +67,14 @@ model Student {
   id             String  @id @default(uuid())
   fullName       String  @db.VarChar(75)
   identityNumber String  @db.VarChar(50)
-  dormitory      String?
   address        String?
   avatar         String?
+
+  class   Class? @relation(fields: [classId], references: [id], onDelete: SetNull)
+  classId Int?
+
+  dormitory   Dormitory? @relation(fields: [dormitoryId], references: [id], onDelete: SetNull)
+  dormitoryId Int?
 
   violationPoints Int @default(0) @db.SmallInt
   rewardPoints    Int @default(0) @db.SmallInt
@@ -85,6 +90,21 @@ model Student {
 
   @@unique([fullName, identityNumber])
   @@index([fullName])
+}
+
+model Class {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50) @unique
+
+  students Student[]
+}
+
+model Dormitory {
+  id      Int       @id @default(autoincrement())
+  name    String    @db.VarChar(100) @unique
+  address String?   @db.TinyText
+
+  students Student[]
 }
 
 model RewardRecord {

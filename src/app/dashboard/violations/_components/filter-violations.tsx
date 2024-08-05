@@ -48,7 +48,6 @@ export const FilterViolations = ({
         <MenuLabel>Type</MenuLabel>
         <MenuItem>
           <ViolationTypeSelect
-            searchable
             className="w-full md:max-w-56"
             comboboxProps={{ withinPortal: false }}
             defaultValue={type}
@@ -60,7 +59,6 @@ export const FilterViolations = ({
         <MenuLabel>Category</MenuLabel>
         <MenuItem>
           <ViolationCategoriesSelect
-            searchable
             className="w-full md:max-w-56"
             comboboxProps={{ withinPortal: false }}
             defaultValue={category}

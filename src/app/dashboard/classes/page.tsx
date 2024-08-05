@@ -10,25 +10,22 @@ import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-loading';
 
-import { FilterStudents } from './_components/filter-students';
-import { StudentsRegistered } from './_components/students-registered';
-import { StudentsSearch } from './_components/students-search';
-
 export const revalidate = 3600; // revalidate every 1 hour
 
 interface SearchParams {
   search?: string;
-  dormitory?: string;
-  studentClass?: string;
-  group?: 'students' | 'dormitories';
 }
 
-const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
-  const { search, dormitory, studentClass, group = 'students' } = searchParams;
+const DashboardDormitories = ({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) => {
+  const { search } = searchParams;
 
   return (
     <div className="flex w-full flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      {/* <div className="flex flex-wrap items-center justify-between gap-4">
         <Suspense>
           <StudentsSearch search={search} />
         </Suspense>
@@ -36,9 +33,9 @@ const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
           <Suspense>
             <FilterStudents dormitory={dormitory} studentClass={studentClass} />
           </Suspense>
-          {/* <AddAccountModal /> */}
+          <AddAccountModal />
         </div>
-      </div>
+      </div> */}
       <TableScrollContainer minWidth={768}>
         <Paper withBorder className="overflow-hidden">
           <Table highlightOnHover stickyHeader>
@@ -52,7 +49,7 @@ const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
             <Suspense
               fallback={<TableBodyLoading columnCount={columns.length} />}
             >
-              <StudentsRegistered dormitory={dormitory} search={search} />
+              {/* <StudentsRegistered dormitory={dormitory} search={search} /> */}
             </Suspense>
           </Table>
         </Paper>
@@ -61,13 +58,6 @@ const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
   );
 };
 
-const columns = [
-  'Student name',
-  'Username',
-  'Identity number',
-  'Total points',
-  'Dormitory',
-  'Address',
-];
+const columns = ['Class', 'No. of students'];
 
-export default DashboardStudent;
+export default DashboardDormitories;

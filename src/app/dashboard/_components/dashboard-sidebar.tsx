@@ -1,8 +1,10 @@
 import { $Enums } from '@prisma/client';
 import {
   IconArchive,
+  IconChalkboard,
   IconChecklist,
   IconFlag,
+  IconHomeDot,
   IconLayoutDashboard,
   IconSchool,
   IconTrophy,
@@ -34,6 +36,18 @@ const menus = [
     icon: <IconLayoutDashboard size={16} />,
     label: 'Dashboard',
     href: '/dashboard',
+  },
+  {
+    icon: <IconChalkboard size={16} />,
+    label: 'Classes',
+    href: '/dashboard/classes',
+    roles: [$Enums.Role.ADMIN],
+  },
+  {
+    icon: <IconHomeDot size={16} />,
+    label: 'Dormitories',
+    href: '/dashboard/dormitories',
+    roles: [$Enums.Role.ADMIN],
   },
   {
     icon: <IconSchool size={16} />,
