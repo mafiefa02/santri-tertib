@@ -1,4 +1,5 @@
 import {
+  ActionIconGroup,
   Badge,
   List,
   ListItem,
@@ -10,6 +11,11 @@ import {
 import { findManyRewardCategoriesWithRewards } from '../_queries/find-many-reward-categories-with-rewards';
 import { findManyRewards } from '../_queries/find-many-rewards';
 import { getRewardsTableColumns } from '../_utils/get-rewards-table-columns';
+
+import { DeleteRewardCategoryModal } from './delete-reward-category-modal';
+import { DeleteRewardModal } from './delete-reward-modal';
+import { EditRewardCategoryModal } from './edit-reward-category-modal';
+import { EditRewardModal } from './edit-violation-modal';
 
 export const RewardsList = ({
   group = 'categories',
@@ -57,6 +63,12 @@ const RewardsListGroupedByCategory = async ({
                 : 'No rewards with this category'}
             </List>
           </TableTd>
+          <TableTd>
+            <ActionIconGroup className="space-x-2">
+              <EditRewardCategoryModal reward={row} />
+              <DeleteRewardCategoryModal categoryName={row.name} id={row.id} />
+            </ActionIconGroup>
+          </TableTd>
         </TableTr>
       ))}
     </TableTbody>
@@ -80,6 +92,12 @@ const RewardsListGroupedByReward = async ({
           <TableTd>{row.points}</TableTd>
           <TableTd>
             {row.category ? row.category.name : 'No category data found'}
+          </TableTd>
+          <TableTd>
+            <ActionIconGroup className="space-x-2">
+              <EditRewardModal reward={row} />
+              <DeleteRewardModal id={row.id} rewardName={row.name} />
+            </ActionIconGroup>
           </TableTd>
         </TableTr>
       ))}

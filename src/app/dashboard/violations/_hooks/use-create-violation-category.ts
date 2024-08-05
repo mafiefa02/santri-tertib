@@ -17,7 +17,7 @@ export const useCreateViolationCategory = (props?: {
       createViolationCategoryAction(value),
     onError: (error) => toast.error(error.message),
     onSuccess: () => {
-      toast.success('Successfully created a new violation!');
+      toast.success('Successfully created a new violation category!');
       void queryClient.invalidateQueries({
         queryKey: ['violation-categories'],
       });

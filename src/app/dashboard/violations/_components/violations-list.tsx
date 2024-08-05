@@ -1,4 +1,5 @@
 import {
+  ActionIconGroup,
   Badge,
   Group,
   List,
@@ -13,6 +14,11 @@ import { ViolationTypeBadge } from '../../_components/violation-type-badge';
 import { findManyViolationCategoriesWithViolation } from '../_queries/find-many-violation-categories-with-violation';
 import { findManyViolations } from '../_queries/find-many-violations';
 import { getViolationsTableColumns } from '../_utils/get-violations-table-columns';
+
+import { DeleteViolationCategoryModal } from './delete-violation-category-modal';
+import { DeleteViolationModal } from './delete-violation-modal';
+import { EditViolationCategoryModal } from './edit-violation-category-modal';
+import { EditViolationModal } from './edit-violation-modal';
 
 export const ViolationsList = ({
   group = 'categories',
@@ -80,6 +86,15 @@ const ViolationsListGroupedByCategory = async ({
                 : 'No violations with this category'}
             </List>
           </TableTd>
+          <TableTd>
+            <ActionIconGroup className="space-x-2">
+              <EditViolationCategoryModal violation={row} />
+              <DeleteViolationCategoryModal
+                categoryName={row.name}
+                id={row.id}
+              />
+            </ActionIconGroup>
+          </TableTd>
         </TableTr>
       ))}
     </TableTbody>
@@ -104,10 +119,16 @@ const ViolationsListGroupedByViolation = async ({
           <TableTd className="max-w-[80ch] text-pretty">{row.name}</TableTd>
           <TableTd>{row.points}</TableTd>
           <TableTd>
-            <ViolationTypeBadge type={row.type} />
+            <ViolationTypeBadge size="sm" type={row.type} />
           </TableTd>
           <TableTd className="max-w-[80ch] text-pretty">
             {row.category ? row.category.name : 'No category data found'}
+          </TableTd>
+          <TableTd>
+            <ActionIconGroup className="space-x-2">
+              <EditViolationModal violation={row} />
+              <DeleteViolationModal id={row.id} violationName={row.name} />
+            </ActionIconGroup>
           </TableTd>
         </TableTr>
       ))}

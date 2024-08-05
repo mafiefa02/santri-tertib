@@ -3,8 +3,8 @@ export const getViolationsTableColumns = (
 ) => {
   switch (group) {
     case 'violations':
-      return ['Violation', 'Points', 'Type', 'Category'];
+      return ['Violation', 'Points', 'Type', 'Category', 'Actions'];
     case 'categories':
-      return ['Category', 'Violation(s)'];
+      return ['Category', 'Violation(s)', 'Actions'];
   }
 };
