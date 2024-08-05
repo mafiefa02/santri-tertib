@@ -19,7 +19,7 @@ import { ActiveFiltersBadge } from './active-filters-badge';
 interface Filters {
   dormitory?: string;
   studentClass?: string;
-  group?: 'students' | 'dormitories';
+  group?: 'students' | 'dormitories' | 'class';
 }
 
 export const FilterStudents = ({ dormitory, studentClass, group }: Filters) => {

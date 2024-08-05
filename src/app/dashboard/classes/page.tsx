@@ -6,9 +6,14 @@ import {
   TableThead,
   TableTr,
 } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import React, { Suspense } from 'react';
 
 import { TableBodyLoading } from '@/components/table-loading';
+
+import { AddClassModal } from './_components/add-class-modal';
+import { ClassList } from './_components/class-list';
+import { ClassSearch } from './_components/class-search';
 
 export const revalidate = 3600; // revalidate every 1 hour
 
@@ -16,27 +21,22 @@ interface SearchParams {
   search?: string;
 }
 
-const DashboardDormitories = ({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) => {
+const DashboardClasses = ({ searchParams }: { searchParams: SearchParams }) => {
   const { search } = searchParams;
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {/* <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4">
         <Suspense>
-          <StudentsSearch search={search} />
+          <ClassSearch search={search} />
         </Suspense>
-        <div className="flex w-full items-center gap-2 md:max-w-max">
-          <Suspense>
-            <FilterStudents dormitory={dormitory} studentClass={studentClass} />
-          </Suspense>
-          <AddAccountModal />
-        </div>
-      </div> */}
-      <TableScrollContainer minWidth={768}>
+        <Suspense>
+          <ModalsProvider>
+            <AddClassModal />
+          </ModalsProvider>
+        </Suspense>
+      </div>
+      <TableScrollContainer minWidth={420}>
         <Paper withBorder className="overflow-hidden">
           <Table highlightOnHover stickyHeader>
             <TableThead>
@@ -49,7 +49,7 @@ const DashboardDormitories = ({
             <Suspense
               fallback={<TableBodyLoading columnCount={columns.length} />}
             >
-              {/* <StudentsRegistered dormitory={dormitory} search={search} /> */}
+              <ClassList search={search} />
             </Suspense>
           </Table>
         </Paper>
@@ -58,6 +58,6 @@ const DashboardDormitories = ({
   );
 };
 
-const columns = ['Class', 'No. of students'];
+const columns = ['Class', 'No. of students', 'Actions'];
 
-export default DashboardDormitories;
+export default DashboardClasses;

@@ -20,7 +20,7 @@ interface SearchParams {
   search?: string;
   dormitory?: string;
   studentClass?: string;
-  group?: 'students' | 'dormitories';
+  group?: 'students' | 'dormitories' | 'class';
 }
 
 const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
@@ -39,7 +39,7 @@ const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
           {/* <AddAccountModal /> */}
         </div>
       </div>
-      <TableScrollContainer minWidth={768}>
+      <TableScrollContainer minWidth={900}>
         <Paper withBorder className="overflow-hidden">
           <Table highlightOnHover stickyHeader>
             <TableThead>
@@ -62,12 +62,13 @@ const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
 };
 
 const columns = [
-  'Student name',
+  'Name',
   'Username',
   'Identity number',
-  'Total points',
+  'Class',
   'Dormitory',
   'Address',
+  'Total points',
 ];
 
 export default DashboardStudent;

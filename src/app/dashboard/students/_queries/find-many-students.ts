@@ -19,6 +19,9 @@ export const findManyStudents = cache(
         ],
         dormitory: { id: dormitory ? parseInt(dormitory) : undefined },
       },
-      include: { dormitory: { select: { name: true } } },
+      include: {
+        dormitory: { select: { name: true } },
+        class: { select: { name: true } },
+      },
     }),
 );
