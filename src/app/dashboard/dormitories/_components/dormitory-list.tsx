@@ -20,11 +20,11 @@ export const DormitoryList = async ({ search }: { search?: string }) => {
           <TableTd>{dormitory._count.students} students</TableTd>
           <TableTd>
             <ActionIconGroup className="space-x-2">
+              <EditDormitoryModal dormitory={dormitory} />
               <DeleteDormitoryModal
                 dormitoryName={dormitory.name}
                 id={dormitory.id}
               />
-              <EditDormitoryModal dormitory={dormitory} />
             </ActionIconGroup>
           </TableTd>
         </TableTr>

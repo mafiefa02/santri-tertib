@@ -17,11 +17,11 @@ export const ClassList = async ({ search }: { search?: string }) => {
           <TableTd>{studentClass._count.students} students</TableTd>
           <TableTd>
             <ActionIconGroup className="space-x-2">
+              <EditClassModal studentClass={studentClass} />
               <DeleteClassModal
                 id={studentClass.id}
                 nameOfClass={studentClass.name}
               />
-              <EditClassModal studentClass={studentClass} />
             </ActionIconGroup>
           </TableTd>
         </TableTr>
