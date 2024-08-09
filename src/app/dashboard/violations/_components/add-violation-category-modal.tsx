@@ -37,7 +37,6 @@ const ModalContent = () => {
   const form = useForm<z.infer<typeof createViolationCategorySchema>>({
     mode: 'uncontrolled',
     validate: zodResolver(createViolationCategorySchema),
-    validateInputOnBlur: true,
   });
 
   return (

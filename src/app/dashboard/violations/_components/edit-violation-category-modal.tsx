@@ -48,7 +48,6 @@ const ModalContent = ({ violation }: { violation: ViolationCategory }) => {
       name: violation.name,
     },
     validate: zodResolver(editViolationCategorySchema),
-    validateInputOnBlur: true,
   });
 
   return (

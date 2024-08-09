@@ -39,7 +39,6 @@ const ModalContent = () => {
   const form = useForm<z.infer<typeof createDormitorySchema>>({
     mode: 'uncontrolled',
     validate: zodResolver(createDormitorySchema),
-    validateInputOnBlur: true,
   });
 
   return (

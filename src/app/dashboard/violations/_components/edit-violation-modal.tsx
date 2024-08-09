@@ -55,7 +55,6 @@ const ModalContent = ({ violation }: { violation: Violation }) => {
       type: violation.type,
     },
     validate: zodResolver(editViolationSchema),
-    validateInputOnBlur: true,
   });
 
   return (

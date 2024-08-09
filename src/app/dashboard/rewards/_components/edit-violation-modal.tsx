@@ -53,7 +53,6 @@ const ModalContent = ({ reward }: { reward: Reward }) => {
       points: reward.points,
     },
     validate: zodResolver(editRewardsSchema),
-    validateInputOnBlur: true,
   });
 
   return (

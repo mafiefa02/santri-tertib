@@ -50,7 +50,6 @@ const ModalContent = ({ student }: { student: Student }) => {
       address: student.address ?? undefined,
     },
     validate: zodResolver(editStudentSchema),
-    validateInputOnBlur: true,
   });
 
   return (

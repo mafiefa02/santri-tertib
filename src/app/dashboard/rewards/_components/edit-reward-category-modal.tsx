@@ -48,7 +48,6 @@ const ModalContent = ({ reward }: { reward: RewardCategory }) => {
       name: reward.name,
     },
     validate: zodResolver(editRewardCategorySchema),
-    validateInputOnBlur: true,
   });
 
   return (

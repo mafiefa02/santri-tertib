@@ -44,7 +44,6 @@ const ModalContent = () => {
       categoryId: '0',
     },
     validate: zodResolver(createRewardsSchema),
-    validateInputOnBlur: true,
   });
 
   return (

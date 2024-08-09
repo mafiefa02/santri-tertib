@@ -44,7 +44,6 @@ const ModalContent = ({ dormitory }: { dormitory: Dormitory }) => {
       address: dormitory.address ?? undefined,
     },
     validate: zodResolver(createDormitorySchema),
-    validateInputOnBlur: true,
   });
 
   return (

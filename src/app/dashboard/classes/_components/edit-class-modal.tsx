@@ -43,7 +43,6 @@ const ModalContent = ({ studentClass }: { studentClass: Class }) => {
       name: studentClass.name,
     },
     validate: zodResolver(editClassSchema),
-    validateInputOnBlur: true,
   });
 
   return (

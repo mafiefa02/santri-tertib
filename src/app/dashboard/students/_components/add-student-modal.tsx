@@ -51,7 +51,6 @@ const ModalContent = () => {
   const form = useForm<z.infer<typeof createStudentSchema>>({
     mode: 'uncontrolled',
     validate: zodResolver(createStudentSchema),
-    validateInputOnBlur: true,
   });
 
   return (

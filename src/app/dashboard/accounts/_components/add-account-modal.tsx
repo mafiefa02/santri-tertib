@@ -50,7 +50,6 @@ const ModalContent = () => {
       username: '',
     },
     validate: zodResolver(createAccountSchema),
-    validateInputOnBlur: true,
   });
 
   return (
