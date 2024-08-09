@@ -8,18 +8,12 @@ import {
   MenuLabel,
   MenuTarget,
 } from '@mantine/core';
-import { $Enums } from '@prisma/client';
-import {
-  IconChecklist,
-  IconHistory,
-  IconLayoutDashboard,
-  IconLogin,
-  IconLogout,
-} from '@tabler/icons-react';
+import { IconLogin, IconLogout } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
 import { auth } from '@/config/auth';
+import { rootRoutes as routes } from '@/routes/root-routes';
 import { formatToTitle } from '@/utils/format-to-title';
 
 import { NavigationBarItem } from './navigation-bar-item';
@@ -38,10 +32,10 @@ export const NavigationBar = async () => {
           </Link>
           <Divider orientation="vertical" />
           <div className="flex items-center gap-1">
-            {menus.map((menu) =>
-              !menu.roles ||
-              menu.roles.some((role) => role === session?.user.type) ? (
-                <NavigationBarItem key={menu.href} menu={menu} />
+            {routes.map((route) =>
+              !route.roles ||
+              route.roles.some((role) => role === session?.user.type) ? (
+                <NavigationBarItem key={route.href} menu={route} />
               ) : null,
             )}
           </div>
@@ -98,23 +92,3 @@ export const NavigationBar = async () => {
     </header>
   );
 };
-
-const menus = [
-  {
-    icon: <IconLayoutDashboard size={16} />,
-    label: 'Dashboard',
-    href: '/dashboard',
-    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
-  },
-  {
-    icon: <IconHistory size={16} />,
-    label: 'History',
-    href: '/history',
-  },
-  {
-    icon: <IconChecklist size={16} />,
-    label: 'Permits',
-    href: '/permits',
-    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN, $Enums.Role.STUDENT],
-  },
-];
