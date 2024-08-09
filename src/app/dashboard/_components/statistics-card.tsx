@@ -1,12 +1,11 @@
 import { Card, Skeleton } from '@mantine/core';
-import type { Prisma } from '@prisma/client';
 
 export const StatisticsCard = async ({
   name,
   fetchFn,
 }: {
   name: string;
-  fetchFn: Prisma.PrismaPromise<number>;
+  fetchFn: Promise<number>;
 }) => {
   const value = await fetchFn;
 

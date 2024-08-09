@@ -14,6 +14,7 @@ import { TableBodyLoading } from '@/components/table-loading';
 import { AddClassModal } from './_components/add-class-modal';
 import { ClassList } from './_components/class-list';
 import { ClassSearch } from './_components/class-search';
+import { findManyClasses } from './_queries/find-many-classes';
 
 export const revalidate = 3600; // revalidate every 1 hour
 
@@ -23,6 +24,10 @@ interface SearchParams {
 
 const DashboardClasses = ({ searchParams }: { searchParams: SearchParams }) => {
   const { search } = searchParams;
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  void findManyClasses({ search });
 
   return (
     <div className="flex w-full flex-col gap-4">

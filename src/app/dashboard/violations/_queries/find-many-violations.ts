@@ -12,7 +12,7 @@ interface QueryParams {
 
 export const findManyViolations = cache(
   async ({ category, type }: QueryParams) =>
-    prisma.violation.findMany({
+    await prisma.violation.findMany({
       include: { category: { select: { name: true } } },
       orderBy: { categoryId: 'desc' },
       where: { type, categoryId: category ? parseInt(category) : undefined },

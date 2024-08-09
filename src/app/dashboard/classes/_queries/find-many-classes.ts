@@ -7,9 +7,10 @@ interface Params {
   search?: string;
 }
 
-export const findManyClasses = cache(async ({ search }: Params) =>
-  prisma.class.findMany({
-    where: { name: { contains: search } },
-    include: { _count: { select: { students: true } } },
-  }),
+export const findManyClasses = cache(
+  async ({ search }: Params) =>
+    await prisma.class.findMany({
+      where: { name: { contains: search } },
+      include: { _count: { select: { students: true } } },
+    }),
 );

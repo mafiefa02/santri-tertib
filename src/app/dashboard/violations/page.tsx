@@ -15,6 +15,8 @@ import { AddViolationOrCategory } from './_components/add-violation-or-category'
 import { FilterViolations } from './_components/filter-violations';
 import { SegmentGroupBy } from './_components/segment-group-by';
 import { ViolationsList } from './_components/violations-list';
+import { findManyViolationCategoriesWithViolation } from './_queries/find-many-violation-categories-with-violation';
+import { findManyViolations } from './_queries/find-many-violations';
 import { getViolationsTableColumns } from './_utils/get-violations-table-columns';
 
 export const revalidate = 3600; // revalidate every 1 hour
@@ -32,6 +34,12 @@ const DashboardViolationsPage = ({
 }) => {
   const { category, type, group = 'categories' } = searchParams;
   const columns = getViolationsTableColumns(group);
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  group === 'violations' && void findManyViolations({ category, type });
+  group === 'categories' &&
+    void findManyViolationCategoriesWithViolation({ category, type });
 
   return (
     <div className="flex w-full flex-col gap-4">

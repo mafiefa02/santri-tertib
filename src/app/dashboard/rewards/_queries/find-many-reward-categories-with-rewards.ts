@@ -10,7 +10,7 @@ export interface FindManyRewardCategoriesWithRewardsParam {
 
 export const findManyRewardCategoriesWithRewards = cache(
   async ({ category }: FindManyRewardCategoriesWithRewardsParam) =>
-    prisma.rewardCategory.findMany({
+    await prisma.rewardCategory.findMany({
       include: { rewards: true },
       where: {
         id: category ? parseInt(category) : undefined,

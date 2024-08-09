@@ -15,6 +15,7 @@ import { AddStudentModal } from './_components/add-student-modal';
 import { FilterStudents } from './_components/filter-students';
 import { StudentsRegistered } from './_components/students-registered';
 import { StudentsSearch } from './_components/students-search';
+import { findManyStudents } from './_queries/find-many-students';
 
 export const revalidate = 3600; // revalidate every 1 hour
 
@@ -26,6 +27,10 @@ interface SearchParams {
 
 const DashboardStudent = ({ searchParams }: { searchParams: SearchParams }) => {
   const { search, dormitory, studentClass } = searchParams;
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  void findManyStudents({ search, dormitory, studentClass });
 
   return (
     <ModalsProvider>

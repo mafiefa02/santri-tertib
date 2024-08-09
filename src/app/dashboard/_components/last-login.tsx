@@ -1,18 +1,14 @@
 import { TableTbody, TableTd, TableTr } from '@mantine/core';
 import React from 'react';
 
-import prisma from '@/config/db';
+import { findManyLoginHistory } from '../_queries/find-many-login-history';
 
 import { AccountTypeBadge } from './account-type-badge';
 import { LastLoginTime } from './last-login-time';
 
 export const LastLogin = async () => {
-  const data = await prisma.loginHistory.findMany({
-    orderBy: { loginTime: 'desc' },
-    take: 10,
-  });
-
-  if (data.length === 0) return <EmptyState />;
+  const data = await findManyLoginHistory();
+  if (!data.length) return <EmptyState />;
 
   return (
     <TableTbody>

@@ -4,4 +4,4 @@ import { cache } from 'react';
 
 import prisma from '@/config/db';
 
-export const findManyClasses = cache(async () => prisma.class.findMany());
+export const findManyClasses = cache(async () => await prisma.class.findMany());

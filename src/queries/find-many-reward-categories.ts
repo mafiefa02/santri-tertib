@@ -4,6 +4,6 @@ import { cache } from 'react';
 
 import prisma from '@/config/db';
 
-export const findManyRewardCategories = cache(async () =>
-  prisma.rewardCategory.findMany(),
+export const findManyRewardCategories = cache(
+  async () => await prisma.rewardCategory.findMany(),
 );

@@ -14,6 +14,8 @@ import { AddRewardOrCategory } from './_components/add-reward-or-category';
 import { FilterRewards } from './_components/filter-rewards';
 import { GroupBySegment } from './_components/group-by-segment';
 import { RewardsList } from './_components/rewards-list';
+import { findManyRewardCategoriesWithRewards } from './_queries/find-many-reward-categories-with-rewards';
+import { findManyRewards } from './_queries/find-many-rewards';
 import { getRewardsTableColumns } from './_utils/get-rewards-table-columns';
 
 export const revalidate = 3600; // revalidate every 1 hour
@@ -30,6 +32,12 @@ const DashboardRewardsPage = ({
 }) => {
   const { category, group = 'categories' } = searchParams;
   const columns = getRewardsTableColumns(group);
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  group === 'rewards' && void findManyRewards({ category });
+  group === 'categories' &&
+    void findManyRewardCategoriesWithRewards({ category });
 
   return (
     <div className="flex w-full flex-col gap-4">

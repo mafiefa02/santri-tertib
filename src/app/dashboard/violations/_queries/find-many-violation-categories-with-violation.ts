@@ -12,7 +12,7 @@ interface QueryParams {
 
 export const findManyViolationCategoriesWithViolation = cache(
   async ({ category, type }: QueryParams) =>
-    prisma.violationCategory.findMany({
+    await prisma.violationCategory.findMany({
       where: { id: category ? parseInt(category) : undefined },
       include: { violations: { where: { type: { equals: type } } } },
     }),

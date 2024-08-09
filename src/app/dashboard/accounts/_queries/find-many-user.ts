@@ -10,18 +10,19 @@ export interface FindManyUserParam {
   search?: string;
 }
 
-export const findManyUser = cache(async ({ type, search }: FindManyUserParam) =>
-  prisma.user.findMany({
-    where: {
-      AND: [
-        { type },
-        {
-          OR: [
-            { username: { contains: search } },
-            { displayName: { contains: search } },
-          ],
-        },
-      ],
-    },
-  }),
+export const findManyUser = cache(
+  async ({ type, search }: FindManyUserParam) =>
+    await prisma.user.findMany({
+      where: {
+        AND: [
+          { type },
+          {
+            OR: [
+              { username: { contains: search } },
+              { displayName: { contains: search } },
+            ],
+          },
+        ],
+      },
+    }),
 );

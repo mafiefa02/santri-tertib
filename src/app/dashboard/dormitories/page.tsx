@@ -14,6 +14,7 @@ import { TableBodyLoading } from '@/components/table-loading';
 import { AddDormitoryModal } from './_components/add-dormitory-modal';
 import { DormitoryList } from './_components/dormitory-list';
 import { DormitorySearch } from './_components/dormitory-search';
+import { findManyDormitories } from './_queries/find-many-dormitories';
 
 export const revalidate = 3600; // revalidate every 1 hour
 
@@ -27,6 +28,10 @@ const DashboardDormitories = ({
   searchParams: SearchParams;
 }) => {
   const { search } = searchParams;
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  void findManyDormitories({ search });
 
   return (
     <div className="flex w-full flex-col gap-4">

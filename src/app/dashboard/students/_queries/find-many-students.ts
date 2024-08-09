@@ -12,7 +12,7 @@ interface QueryParams {
 
 export const findManyStudents = cache(
   async ({ search, dormitory, studentClass }: QueryParams) =>
-    prisma.student.findMany({
+    await prisma.student.findMany({
       where: {
         AND: [
           {

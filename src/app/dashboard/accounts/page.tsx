@@ -16,6 +16,7 @@ import { AccountSearch } from './_components/account-search';
 import { AccountTypeFilter } from './_components/account-type-filter';
 import { AccountsRegistered } from './_components/accounts-registered';
 import { AddAccountModal } from './_components/add-account-modal';
+import { findManyUser } from './_queries/find-many-user';
 
 export const revalidate = 600; // opt-in to revalidate every 10 minutes
 
@@ -30,6 +31,10 @@ const AccountsDashboardPage = ({
   searchParams: SearchParams;
 }) => {
   const { type, search } = searchParams;
+
+  // preload data
+  // # refer to: https://react.dev/reference/react/cache#preload-data
+  void findManyUser({ type, search });
 
   return (
     <ModalsProvider>
