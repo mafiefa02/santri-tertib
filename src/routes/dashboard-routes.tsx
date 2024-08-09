@@ -16,6 +16,7 @@ export const dashboardRoutes = [
     icon: <IconLayoutDashboard size={16} />,
     label: 'Dashboard',
     href: '/dashboard',
+    roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN],
   },
   {
     icon: <IconChalkboard size={16} />,
@@ -66,3 +67,6 @@ export const dashboardRoutes = [
     roles: [$Enums.Role.ADMIN],
   },
 ];
+
+export const getRoleDashboardRoutes = (role: Exclude<$Enums.Role, 'STUDENT'>) =>
+  dashboardRoutes.filter((route) => route.roles.includes(role));

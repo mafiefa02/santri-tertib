@@ -24,3 +24,7 @@ export const rootRoutes = [
     roles: [$Enums.Role.STAFF, $Enums.Role.ADMIN, $Enums.Role.STUDENT],
   },
 ];
+
+export const commonRootRoutes = rootRoutes.filter((route) => !route.roles);
+export const getRoleRootRoutes = (role: $Enums.Role) =>
+  rootRoutes.filter((route) => !route.roles || route.roles.includes(role));
