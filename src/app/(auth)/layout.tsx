@@ -2,6 +2,8 @@ import { Skeleton } from '@mantine/core';
 import Image from 'next/image';
 import type React from 'react';
 
+import loginImage from '@/../public/bg-auth.jpg';
+
 import { AuthHeader } from './_components/auth-header';
 import { CopyrightBar } from './_components/copyright-bar';
 
@@ -19,7 +21,7 @@ const AuthenticationLayout = ({
           className="absolute hidden object-cover contrast-125 saturate-50 lg:block"
           height="1280"
           loading="eager"
-          src="/bg-auth.jpg"
+          src={loginImage}
           style={{ width: '100%', height: '100%' }}
           width="1280"
         />
