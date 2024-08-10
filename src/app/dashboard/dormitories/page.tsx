@@ -16,8 +16,6 @@ import { DormitoryList } from './_components/dormitory-list';
 import { DormitorySearch } from './_components/dormitory-search';
 import { findManyDormitories } from './_queries/find-many-dormitories';
 
-export const revalidate = 3600; // revalidate every 1 hour
-
 interface SearchParams {
   search?: string;
 }

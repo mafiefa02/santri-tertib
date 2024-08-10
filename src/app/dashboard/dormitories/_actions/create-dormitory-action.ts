@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { type z } from 'zod';
 
 import prisma from '@/config/db';
@@ -13,5 +13,6 @@ export const createDormitoryAction = async (
   const result = await prisma.dormitory.create({ data });
 
   revalidatePath('/dashboard/dormitories', 'page');
+  revalidateTag('findAllDormitories');
   return result;
 };

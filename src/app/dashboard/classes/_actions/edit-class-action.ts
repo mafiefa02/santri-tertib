@@ -1,7 +1,7 @@
 'use server';
 
 import type { Class } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { type z } from 'zod';
 
 import prisma from '@/config/db';
@@ -15,5 +15,6 @@ export const editClassAction = async (
   const result = await prisma.class.update({ where: { id }, data });
 
   revalidatePath('/dashboard/classes', 'page');
+  revalidateTag('findAllClasses');
   return result;
 };

@@ -18,8 +18,6 @@ import { findManyRewardCategoriesWithRewards } from './_queries/find-many-reward
 import { findManyRewards } from './_queries/find-many-rewards';
 import { getRewardsTableColumns } from './_utils/get-rewards-table-columns';
 
-export const revalidate = 3600; // revalidate every 1 hour
-
 interface SearchParams {
   category?: string;
   group?: 'rewards' | 'categories';

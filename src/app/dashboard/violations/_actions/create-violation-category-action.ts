@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { type z } from 'zod';
 
 import prisma from '@/config/db';
@@ -13,5 +13,6 @@ export const createViolationCategoryAction = async (
   const result = await prisma.violationCategory.create({ data });
 
   revalidatePath('/dashboard/violations', 'page');
+  revalidateTag('findAllViolationCategories');
   return result;
 };

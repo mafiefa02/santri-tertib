@@ -1,7 +1,7 @@
 import 'server-only';
 
 import type { $Enums } from '@prisma/client';
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import prisma from '@/config/db';
 
@@ -9,6 +9,9 @@ export interface FindManyUserParam {
   type?: $Enums.Role;
   search?: string;
 }
+
+const REVALIDATE = 604800; // 7 days
+const CACHE_TAG = 'findManyUser';
 
 export const findManyUser = cache(
   async ({ type, search }: FindManyUserParam) =>
@@ -25,4 +28,6 @@ export const findManyUser = cache(
         ],
       },
     }),
+  [CACHE_TAG],
+  { revalidate: REVALIDATE, tags: [CACHE_TAG] },
 );

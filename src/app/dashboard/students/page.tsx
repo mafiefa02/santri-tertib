@@ -17,8 +17,6 @@ import { StudentsRegistered } from './_components/students-registered';
 import { StudentsSearch } from './_components/students-search';
 import { findManyStudents } from './_queries/find-many-students';
 
-export const revalidate = 3600; // revalidate every 1 hour
-
 interface SearchParams {
   search?: string;
   dormitory?: string;

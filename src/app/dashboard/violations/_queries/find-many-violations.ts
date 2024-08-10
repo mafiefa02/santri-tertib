@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { type $Enums } from '@prisma/client';
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import prisma from '@/config/db';
 
@@ -10,6 +10,9 @@ interface QueryParams {
   category?: string;
 }
 
+const REVALIDATE = 604800; // 7 days
+const CACHE_TAG = 'findManyViolations';
+
 export const findManyViolations = cache(
   async ({ category, type }: QueryParams) =>
     await prisma.violation.findMany({
@@ -17,4 +20,6 @@ export const findManyViolations = cache(
       orderBy: { categoryId: 'desc' },
       where: { type, categoryId: category ? parseInt(category) : undefined },
     }),
+  [CACHE_TAG],
+  { revalidate: REVALIDATE, tags: [CACHE_TAG] },
 );

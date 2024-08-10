@@ -19,8 +19,6 @@ import { findManyViolationCategoriesWithViolation } from './_queries/find-many-v
 import { findManyViolations } from './_queries/find-many-violations';
 import { getViolationsTableColumns } from './_utils/get-violations-table-columns';
 
-export const revalidate = 3600; // revalidate every 1 hour
-
 interface SearchParams {
   category?: string;
   group?: 'violations' | 'categories';

@@ -18,8 +18,6 @@ import { AccountsRegistered } from './_components/accounts-registered';
 import { AddAccountModal } from './_components/add-account-modal';
 import { findManyUser } from './_queries/find-many-user';
 
-export const revalidate = 600; // opt-in to revalidate every 10 minutes
-
 interface SearchParams {
   type?: $Enums.Role;
   search?: string;

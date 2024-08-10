@@ -16,8 +16,6 @@ import { ClassList } from './_components/class-list';
 import { ClassSearch } from './_components/class-search';
 import { findManyClasses } from './_queries/find-many-classes';
 
-export const revalidate = 3600; // revalidate every 1 hour
-
 interface SearchParams {
   search?: string;
 }

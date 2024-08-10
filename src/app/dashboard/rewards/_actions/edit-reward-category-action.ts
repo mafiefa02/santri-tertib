@@ -1,7 +1,7 @@
 'use server';
 
 import { type RewardCategory } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { type z } from 'zod';
 
 import prisma from '@/config/db';
@@ -18,5 +18,6 @@ export const editRewardCategoryAction = async (
   });
 
   revalidatePath('/dashboard/rewards', 'page');
+  revalidateTag('findAllRewardCategories');
   return result;
 };

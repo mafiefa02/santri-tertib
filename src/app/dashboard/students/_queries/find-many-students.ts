@@ -1,6 +1,6 @@
 'use server';
 
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import prisma from '@/config/db';
 
@@ -9,6 +9,9 @@ interface QueryParams {
   search?: string;
   dormitory?: string;
 }
+
+const REVALIDATE = 604800; // 7 days
+const CACHE_TAG = 'findManyStudents';
 
 export const findManyStudents = cache(
   async ({ search, dormitory, studentClass }: QueryParams) =>
@@ -31,4 +34,6 @@ export const findManyStudents = cache(
         class: { select: { name: true } },
       },
     }),
+  [CACHE_TAG],
+  { revalidate: REVALIDATE, tags: [CACHE_TAG] },
 );
