@@ -94,7 +94,7 @@ model Student {
 
 model Class {
   id   Int    @id @default(autoincrement())
-  name String @db.VarChar(50) @unique
+  name String @unique @db.VarChar(50)
 
   students Student[]
 
@@ -102,9 +102,9 @@ model Class {
 }
 
 model Dormitory {
-  id      Int       @id @default(autoincrement())
-  name    String    @db.VarChar(100) @unique
-  address String?   @db.TinyText
+  id      Int     @id @default(autoincrement())
+  name    String  @unique @db.VarChar(100)
+  address String? @db.TinyText
 
   students Student[]
 

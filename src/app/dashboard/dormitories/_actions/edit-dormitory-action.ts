@@ -15,5 +15,5 @@ export const editDormitoryAction = async (
   const result = await prisma.dormitory.update({ where: { id }, data });
 
   revalidatePath('/dashboard/dormitories', 'page');
-  return result
+  return result;
 };
