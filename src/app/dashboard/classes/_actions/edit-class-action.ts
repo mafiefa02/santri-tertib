@@ -15,6 +15,7 @@ export const editClassAction = async (
   const result = await prisma.class.update({ where: { id }, data });
 
   revalidatePath('/dashboard/classes', 'page');
+  revalidatePath('/dashboard/students', 'page');
   revalidateTag('findAllClasses');
   return result;
 };

@@ -9,6 +9,7 @@ export const deleteClassAction = async (id: Class['id']) => {
   const result = await prisma.class.delete({ where: { id } });
 
   revalidatePath('/dashboard/classes', 'page');
+  revalidatePath('/dashboard/students');
   revalidateTag('findAllClasses');
   return result;
 };
