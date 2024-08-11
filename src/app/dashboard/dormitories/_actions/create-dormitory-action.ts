@@ -12,7 +12,7 @@ export const createDormitoryAction = async (
 ) => {
   const result = await prisma.dormitory.create({ data });
 
-  revalidatePath('/dashboard/dormitories', 'page');
+  revalidatePath('/dashboard/dormitories');
   revalidateTag('findAllDormitories');
   return result;
 };

@@ -7,5 +7,5 @@ import prisma from '@/config/db';
 
 export const deleteAccountAction = async (id: User['id']) => {
   await prisma.user.delete({ where: { id } });
-  revalidatePath('/dashboard/accounts', 'page');
+  revalidatePath('/dashboard/accounts');
 };

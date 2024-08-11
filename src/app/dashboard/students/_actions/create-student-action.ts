@@ -27,8 +27,8 @@ export const createStudentAction = async (
     include: { password: { select: { password: true } } },
   });
 
-  revalidatePath('/dashboard/students', 'page');
-  revalidatePath('/dashboard/classes', 'page');
-  revalidatePath('/dashboard/dormitories', 'page');
+  revalidatePath('/dashboard/students');
+  revalidatePath('/dashboard/classes');
+  revalidatePath('/dashboard/dormitories');
   return result;
 };

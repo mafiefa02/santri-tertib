@@ -9,6 +9,6 @@ export const deleteViolationCategoryAction = async (
   id: ViolationCategory['id'],
 ) => {
   await prisma.violationCategory.delete({ where: { id } });
-  revalidatePath('/dashboard/violations', 'page');
+  revalidatePath('/dashboard/violations');
   revalidateTag('findAllViolationCategories');
 };

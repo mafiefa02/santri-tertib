@@ -17,6 +17,6 @@ export const editRewardAction = async (
     data: { ...data, categoryId: parseInt(data.categoryId) },
   });
 
-  revalidatePath('/dashboard/rewards', 'page');
+  revalidatePath('/dashboard/rewards');
   return result;
 };

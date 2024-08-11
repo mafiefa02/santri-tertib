@@ -12,7 +12,7 @@ export const createRewardCategoryAction = async (
 ) => {
   const result = await prisma.rewardCategory.create({ data });
 
-  revalidatePath('/dashboard/rewards', 'page');
+  revalidatePath('/dashboard/rewards');
   revalidateTag('findAllRewardCategories');
   return result;
 };

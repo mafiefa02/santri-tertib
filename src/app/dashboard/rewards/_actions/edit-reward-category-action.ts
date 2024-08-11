@@ -17,7 +17,7 @@ export const editRewardCategoryAction = async (
     data,
   });
 
-  revalidatePath('/dashboard/rewards', 'page');
+  revalidatePath('/dashboard/rewards');
   revalidateTag('findAllRewardCategories');
   return result;
 };

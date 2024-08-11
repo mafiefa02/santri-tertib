@@ -8,8 +8,8 @@ import prisma from '@/config/db';
 export const deleteStudentAction = async (id: Student['id']) => {
   const result = await prisma.student.delete({ where: { id } });
 
-  revalidatePath('/dashboard/students', 'page');
-  revalidatePath('/dashboard/dormitories', 'page');
-  revalidatePath('/dashboard/classes', 'page');
+  revalidatePath('/dashboard/students');
+  revalidatePath('/dashboard/dormitories');
+  revalidatePath('/dashboard/classes');
   return result;
 };

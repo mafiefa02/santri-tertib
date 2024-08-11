@@ -12,7 +12,7 @@ export const createClassAction = async (
 ) => {
   const result = await prisma.class.create({ data });
 
-  revalidatePath('/dashboard/classes', 'page');
+  revalidatePath('/dashboard/classes');
   revalidateTag('findAllClasses');
   return result;
 };

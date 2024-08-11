@@ -17,7 +17,7 @@ export const editViolationCategoryAction = async (
     data,
   });
 
-  revalidatePath('/dashboard/violations', 'page');
+  revalidatePath('/dashboard/violations');
   revalidateTag('findAllViolationCategories');
   return result;
 };

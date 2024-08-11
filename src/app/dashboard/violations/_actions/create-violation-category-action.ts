@@ -12,7 +12,7 @@ export const createViolationCategoryAction = async (
 ) => {
   const result = await prisma.violationCategory.create({ data });
 
-  revalidatePath('/dashboard/violations', 'page');
+  revalidatePath('/dashboard/violations');
   revalidateTag('findAllViolationCategories');
   return result;
 };

@@ -17,6 +17,6 @@ export const editViolationAction = async (
     data: { ...data, categoryId: parseInt(data.categoryId) },
   });
 
-  revalidatePath('/dashboard/violations', 'page');
+  revalidatePath('/dashboard/violations');
   return result;
 };

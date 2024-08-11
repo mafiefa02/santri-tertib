@@ -7,5 +7,5 @@ import prisma from '@/config/db';
 
 export const deleteRewardAction = async (id: Reward['id']) => {
   await prisma.reward.delete({ where: { id } });
-  revalidatePath('/dashboard/rewards', 'page');
+  revalidatePath('/dashboard/rewards');
 };

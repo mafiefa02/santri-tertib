@@ -21,6 +21,6 @@ export const createAccountAction = async (
     },
   });
 
-  revalidatePath('/dashboard/accounts', 'page');
+  revalidatePath('/dashboard/accounts');
   return data;
 };
