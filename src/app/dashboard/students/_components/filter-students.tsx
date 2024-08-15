@@ -15,8 +15,8 @@ import {
 } from '@tabler/icons-react';
 import { Suspense } from 'react';
 
-import { StudentClassSelect } from '@/components/student-class-select';
-import { StudentDormitorySelect } from '@/components/student-dormitory-select';
+import { StudentClassSelect } from '@/components/select/student-class-select';
+import { StudentDormitorySelect } from '@/components/select/student-dormitory-select';
 import { useQueryString } from '@/hooks/use-query-string';
 
 import { ActiveFiltersBadge } from './active-filters-badge';

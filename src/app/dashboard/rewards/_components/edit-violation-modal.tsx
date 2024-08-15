@@ -13,7 +13,7 @@ import type { Reward } from '@prisma/client';
 import { IconEdit } from '@tabler/icons-react';
 import type { z } from 'zod';
 
-import { ViolationCategoriesSelect } from '@/components/violation-categories-select';
+import { ViolationCategoriesSelect } from '@/components/select/violation-categories-select';
 
 import { useEditReward } from '../_hooks/use-edit-reward';
 import { editRewardsSchema } from '../_schemas/edit-rewards-schema';

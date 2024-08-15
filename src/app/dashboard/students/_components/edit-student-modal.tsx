@@ -7,8 +7,8 @@ import { type Student } from '@prisma/client';
 import { IconEdit } from '@tabler/icons-react';
 import type { z } from 'zod';
 
-import { StudentClassSelect } from '@/components/student-class-select';
-import { StudentDormitorySelect } from '@/components/student-dormitory-select';
+import { StudentClassSelect } from '@/components/select/student-class-select';
+import { StudentDormitorySelect } from '@/components/select/student-dormitory-select';
 
 import { useEditStudent } from '../_hooks/use-edit-student';
 import { editStudentSchema } from '../_schemas/edit-student-schema';

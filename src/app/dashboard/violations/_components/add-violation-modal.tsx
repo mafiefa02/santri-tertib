@@ -6,8 +6,8 @@ import { closeModal, openModal } from '@mantine/modals';
 import { IconFlag } from '@tabler/icons-react';
 import { type z } from 'zod';
 
-import { ViolationCategoriesSelect } from '@/components/violation-categories-select';
-import { ViolationTypeSelect } from '@/components/violation-type-select';
+import { ViolationCategoriesSelect } from '@/components/select/violation-categories-select';
+import { ViolationTypeSelect } from '@/components/select/violation-type-select';
 
 import { useCreateViolation } from '../_hooks/use-create-violation';
 import { createViolationSchema } from '../_schemas/create-violation-schema';

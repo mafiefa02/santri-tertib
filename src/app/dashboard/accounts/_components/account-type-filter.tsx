@@ -3,7 +3,7 @@
 import { type $Enums } from '@prisma/client';
 import React from 'react';
 
-import { AccountTypeSelect } from '@/components/account-type-select';
+import { AccountTypeSelect } from '@/components/select/account-type-select';
 import { useQueryString } from '@/hooks/use-query-string';
 
 export const AccountTypeFilter = ({ type }: { type?: $Enums.Role }) => {

@@ -7,7 +7,7 @@ import { IconTrophy } from '@tabler/icons-react';
 import React from 'react';
 import { type z } from 'zod';
 
-import { RewardCategoriesSelect } from '@/components/reward-categories-select';
+import { RewardCategoriesSelect } from '@/components/select/reward-categories-select';
 
 import { useCreateReward } from '../_hooks/use-create-reward';
 import { createRewardsSchema } from '../_schemas/create-rewards-schema';

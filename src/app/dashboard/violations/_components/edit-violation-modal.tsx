@@ -13,8 +13,8 @@ import type { Violation } from '@prisma/client';
 import { IconEdit } from '@tabler/icons-react';
 import type { z } from 'zod';
 
-import { ViolationCategoriesSelect } from '@/components/violation-categories-select';
-import { ViolationTypeSelect } from '@/components/violation-type-select';
+import { ViolationCategoriesSelect } from '@/components/select/violation-categories-select';
+import { ViolationTypeSelect } from '@/components/select/violation-type-select';
 
 import { useEditViolation } from '../_hooks/use-edit-violation';
 import { editViolationSchema } from '../_schemas/edit-violation-schema';

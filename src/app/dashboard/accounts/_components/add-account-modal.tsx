@@ -8,7 +8,7 @@ import { IconClipboard, IconPlus } from '@tabler/icons-react';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 
-import { AccountTypeSelect } from '@/components/account-type-select';
+import { AccountTypeSelect } from '@/components/select/account-type-select';
 import { randomString } from '@/utils/random-string';
 
 import { useCreateAccount } from '../_hooks/use-create-account';

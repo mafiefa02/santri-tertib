@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { RewardCategoriesSelect } from '@/components/reward-categories-select';
+import { RewardCategoriesSelect } from '@/components/select/reward-categories-select';
 import { useQueryString } from '@/hooks/use-query-string';
 
 export const FilterRewards = ({ category }: { category?: string }) => {

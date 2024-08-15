@@ -7,8 +7,8 @@ import { IconClipboard, IconPlus } from '@tabler/icons-react';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 
-import { StudentClassSelect } from '@/components/student-class-select';
-import { StudentDormitorySelect } from '@/components/student-dormitory-select';
+import { StudentClassSelect } from '@/components/select/student-class-select';
+import { StudentDormitorySelect } from '@/components/select/student-dormitory-select';
 
 import { useCreateStudent } from '../_hooks/use-create-student';
 import { createStudentSchema } from '../_schemas/create-student-schema';
