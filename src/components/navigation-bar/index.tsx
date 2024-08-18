@@ -1,23 +1,12 @@
-import {
-  Avatar,
-  Button,
-  Divider,
-  Menu,
-  MenuDivider,
-  MenuDropdown,
-  MenuLabel,
-  MenuTarget,
-} from '@mantine/core';
-import { IconLogin, IconLogout } from '@tabler/icons-react';
+import { Button, Divider } from '@mantine/core';
+import { IconLogin } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
 import { auth } from '@/config/auth';
-import { rootRoutes as routes } from '@/routes/root-routes';
-import { formatToTitle } from '@/utils/format-to-title';
 
-import { NavigationBarItem } from './navigation-bar-item';
-import { NavigationLogoutButton } from './navigation-logout-button';
+import { NavigationMenu } from './navigation-menu';
+import { SessionDropdown } from './session-dropdown';
 
 export const NavigationBar = async () => {
   const session = await auth();
@@ -26,68 +15,35 @@ export const NavigationBar = async () => {
       <div className="container flex w-full items-center justify-between">
         <div className="flex items-center gap-3">
           <Link className="flex items-center gap-2" href="/">
-            <h1 className="font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
+            <span className="font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
               Santrib
-            </h1>
+            </span>
           </Link>
           <Divider orientation="vertical" />
           <div className="flex items-center gap-1">
-            {routes.map((route) =>
-              !route.roles ||
-              route.roles.some((role) => role === session?.user.type) ? (
-                <NavigationBarItem key={route.href} menu={route} />
-              ) : null,
-            )}
+            <NavigationMenu userRole={session?.user.type} />
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          {session ? (
-            <Menu>
-              <MenuTarget>
-                <Avatar
-                  aria-label="Account action button"
-                  className="hover:cursor-pointer"
-                  color="blue"
-                  name={session.user.username}
-                  role="button"
-                  src={session.user.avatar ?? undefined}
-                />
-              </MenuTarget>
-              <MenuDropdown>
-                <MenuLabel className="flex items-center gap-4 font-bold text-mtn-primary-filled dark:text-mtn-primary-light-color">
-                  {session.user.username}
-                  <span className="font-normal">
-                    {formatToTitle(session.user.type)}
-                  </span>
-                </MenuLabel>
-                <MenuDivider />
-                <NavigationLogoutButton
-                  leftSection={
-                    <IconLogout
-                      className="text-mtn-primary-filled dark:text-mtn-primary-light-color"
-                      size={16}
-                    />
-                  }
-                >
-                  Logout
-                </NavigationLogoutButton>
-              </MenuDropdown>
-            </Menu>
-          ) : (
-            <Button
-              aria-label="Login button"
-              className="shrink-0"
-              component={Link}
-              href="/login"
-              justify="center"
-              rightSection={<IconLogin size={16} />}
-              size="xs"
-            >
-              Login
-            </Button>
-          )}
-        </div>
+        {session ? (
+          <SessionDropdown
+            avatar={session.user.avatar}
+            type={session.user.type}
+            username={session.user.username}
+          />
+        ) : (
+          <Button
+            aria-label="Login button"
+            className="shrink-0"
+            component={Link}
+            href="/login"
+            justify="center"
+            rightSection={<IconLogin size={16} />}
+            size="xs"
+          >
+            Login
+          </Button>
+        )}
       </div>
     </header>
   );
